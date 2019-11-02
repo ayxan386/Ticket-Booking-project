@@ -1,0 +1,5 @@
+package Booking;
+
+class BookingService {
+
+}
