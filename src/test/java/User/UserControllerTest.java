@@ -12,6 +12,7 @@ public class UserControllerTest {
         private UserController userController;
         private User u1;
         private User u2;
+
         @Before
         public void setup() {
                 userController = UserController.create();
