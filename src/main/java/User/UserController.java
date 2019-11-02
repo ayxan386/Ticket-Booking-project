@@ -8,8 +8,21 @@ public class UserController {
         private UserController() {
                 userService = new UserService();
         }
-        public ArrayList<User> getAllUsers() {
-                return userService.getAllUsers();
+
+        boolean loginUser(User u) {
+                throw new IllegalArgumentException("Not implemented yet");
+        }
+
+        boolean registerUser(User u) {
+                throw new IllegalArgumentException("Not implemented yet");
+        }
+
+        ArrayList<String> getUserInfo(User u) {
+                throw new IllegalArgumentException("Not implemented yet");
+        }
+
+        boolean deleteUser(User u) {
+                throw new IllegalArgumentException("Not implemented yet");
         }
 
         public static UserController create() {
