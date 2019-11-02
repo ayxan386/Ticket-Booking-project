@@ -1,6 +1,5 @@
 package Booking;
 
-public class BookingController {
-        private BookingService bookingService;
-
+public class BookingController{
+       private BookingService bookingService;
 }
