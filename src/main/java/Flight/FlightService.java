@@ -3,19 +3,25 @@ package Flight;
 import DAO.DAO;
 
 public class FlightService implements DAO<Flight> {
+
+    @Override
     public void add(Flight data) {
 
     }
 
-    public void remove(int id) {
+    @Override
+    public void remove(String id) {
 
     }
 
-    public Flight get(int id) {
+    @Override
+    public Flight get(String id) {
         return null;
     }
 
-    public void update(Flight data, int date, int number) {
+    @Override
+    public void update(Flight data) {
 
     }
+
 }
