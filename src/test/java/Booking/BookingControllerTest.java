@@ -19,7 +19,7 @@ public class BookingControllerTest {
         @Before
         public void setup() {
                 bookingController = BookingController.create();
-                f = new Flight();
+                f = new Flight("00001", "Baku", "Kiev", 2.5);
                 b1 = new Booking(f, LocalDateTime.now(), "99.65", "000001", false);
                 b2 = new Booking(f, LocalDateTime.now(), "199.65", "000002", true);
         }
