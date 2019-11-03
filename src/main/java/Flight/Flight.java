@@ -1,67 +1,44 @@
 package Flight;
 
-public class Flight{
-    private int flightID;
-    private String flightName;
-    private String source;
-    private String departure;
-    private int arrivalTime;
-    private int departureTime;
-    private int seats;
+public class Flight {
+        private final String id;
+        private final String from;
+        private final String to;
+        private final double duration;
 
-    public int getFlightID() {
-        return flightID;
-    }
+        public Flight(String id, String from, String to, double duration) {
+                this.id = id;
+                this.from = from;
+                this.to = to;
+                this.duration = duration;
+        }
 
-    public void setFlightID(int flightID) {
-        this.flightID = flightID;
-    }
+        public String getId() {
+                return id;
+        }
 
-    public String getFlightName() {
-        return flightName;
-    }
+        public String getFrom() {
+                return from;
+        }
 
-    public void setFlightName(String flightName) {
-        this.flightName = flightName;
-    }
+        public String getTo() {
+                return to;
+        }
 
-    public String getSource() {
-        return source;
-    }
+        public double getDuration() {
+                return duration;
+        }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
+        @Override
+        public boolean equals(Object o) {
+                if (this == o) return true;
+                if (!(o instanceof Flight)) return false;
+                Flight flight = (Flight) o;
+                return getId().equals(flight.getId());
+        }
 
-    public String getDeparture() {
-        return departure;
-    }
-
-    public void setDeparture(String departure) {
-        this.departure = departure;
-    }
-
-    public int getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(int arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
-
-    public int getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(int departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    public int getSeats() {
-        return seats;
-    }
-
-    public void setSeats(int seats) {
-        this.seats = seats;
-    }
+        @Override
+        public int hashCode() {
+                return getId().hashCode();
+        }
 }
