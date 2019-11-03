@@ -3,7 +3,7 @@ package Flight;
 import DAO.DAO;
 
 public class FlightService implements DAO<Flight> {
-    public void add(Flight data, int date, int number) {
+    public void add(Flight data) {
 
     }
 
