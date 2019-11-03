@@ -2,42 +2,66 @@ package Booking;
 
 import Flight.Flight;
 
+import java.time.LocalDateTime;
+import java.util.Objects;
+
 public class Booking {
-    private Flight flight;
-    private int date;
-    private int price;
-    private int serialNumber;
-    private boolean Class;
+        private Flight flight;
+        private LocalDateTime date;
+        private String price;
+        private String serialNumber;
+        private boolean Class;
 
-    public boolean isClass() {
-        return Class;
-    }
+        public Booking(Flight flight, LocalDateTime date, String price, String serialNumber, boolean aClass) {
+                this.flight = flight;
+                this.date = date;
+                this.price = price;
+                this.serialNumber = serialNumber;
+                Class = aClass;
+        }
 
-    public void setClass(boolean aClass) {
-        Class = aClass;
-    }
+        @Override
+        public boolean equals(Object o) {
+                if (this == o) return true;
+                if (!(o instanceof Booking)) return false;
+                Booking booking = (Booking) o;
+                return Objects.equals(getSerialNumber(), booking.getSerialNumber());
+        }
 
-    public int getSerialNumber() {
-        return serialNumber;
-    }
+        @Override
+        public int hashCode() {
+                return Objects.hash(getSerialNumber());
+        }
 
-    public void setSerialNumber(int serialNumber) {
-        this.serialNumber = serialNumber;
-    }
+        public boolean isClass() {
+                return Class;
+        }
 
-    public int getDate() {
-        return date;
-    }
+        public void setClass(boolean aClass) {
+                Class = aClass;
+        }
 
-    public void setDate(int date) {
-        this.date = date;
-    }
+        public String getSerialNumber() {
+                return serialNumber;
+        }
 
-    public int getPrice() {
-        return price;
-    }
+        public void setSerialNumber(String serialNumber) {
+                this.serialNumber = serialNumber;
+        }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
+        public LocalDateTime getDate() {
+                return date;
+        }
+
+        public void setDate(LocalDateTime date) {
+                this.date = date;
+        }
+
+        public String getPrice() {
+                return price;
+        }
+
+        public void setPrice(String price) {
+                this.price = price;
+        }
 }

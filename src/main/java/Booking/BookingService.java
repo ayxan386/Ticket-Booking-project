@@ -1,4 +1,5 @@
 package Booking;
+
 import DAO.DAO;
 
 class BookingService implements DAO<Booking> {
@@ -10,6 +11,7 @@ class BookingService implements DAO<Booking> {
     public void remove(int id) {
 
     }
+
     public Booking get(int id) {
         return null;
     }
