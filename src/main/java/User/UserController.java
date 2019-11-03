@@ -1,6 +1,7 @@
 package User;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class UserController {
         private UserService userService;
@@ -14,21 +15,28 @@ public class UserController {
         }
 
         boolean registerUser(User u) {
-                throw new IllegalArgumentException("Not implemented yet");
+                return userService.smartAdd(u);
         }
 
         ArrayList<String> getUserInfo(User u) {
-                throw new IllegalArgumentException("Not implemented yet");
+                User temp = userService.get(u.getId());
+                return new ArrayList<String>() {{
+                        add(temp.getName());
+                        add(temp.getSurname());
+                        add(temp.getNickname());
+                        add(temp.getId());
+                }};
         }
 
         boolean deleteUser(User u) {
-                throw new IllegalArgumentException("Not implemented yet");
+                return userService.smartRemove(u);
         }
 
         public static UserController create() {
                 return new UserController();
         }
-        public ArrayList<User> getAllUsers() {
+
+        public Set<User> getAllUsers() {
                 return userService.getAllUsers();
         }
 }

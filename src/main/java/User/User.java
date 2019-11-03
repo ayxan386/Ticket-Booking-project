@@ -42,4 +42,9 @@ public class User {
         public int hashCode() {
                 return getId().hashCode();
         }
+
+        @Override
+        public String toString() {
+                return String.format("User{name='%s', surname='%s', nickname='%s', id='%s'}", name, surname, nickname, id);
+        }
 }

@@ -2,15 +2,12 @@ package User;
 
 import DAO.DAO;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 
 public class UserService implements DAO<User> {
-        Set<User> storage;
+        private Set<User> storage;
         private final static File users = new File("data", "users.txt");
 
         public UserService() {
@@ -20,14 +17,35 @@ public class UserService implements DAO<User> {
 
         public void loadAllUser() {
                 try {
-                        new BufferedReader(
-                                new FileReader(users)).lines().forEach(row -> {
-                                String[] columns = row.split("|");
-                                User temp = new User(columns[1], columns[2], columns[3], columns[0]);
+                        BufferedReader br = new BufferedReader(
+                                new FileReader(users));
+                        br.lines().forEach(row -> {
+                                String[] columns = row.split("/");
+                                User temp = new User(columns[0], columns[1], columns[2], columns[3]);
                                 storage.add(temp);
                         });
-                } catch (FileNotFoundException e) {
+                        br.close();
+                } catch (Exception e) {
                         //...
+                }
+        }
+
+        public void updateDatabase() {
+                try {
+                        BufferedWriter bw = new BufferedWriter(
+                                new FileWriter(users));
+                        for (User user : storage) {
+                                bw.write(
+                                        String.format("%s/%s/%s/%s\n",
+                                                user.getName(),
+                                                user.getSurname(),
+                                                user.getNickname(),
+                                                user.getId())
+                                );
+                        }
+                        bw.close();
+                } catch (IOException e) {
+                        e.printStackTrace();
                 }
         }
 
@@ -52,11 +70,13 @@ public class UserService implements DAO<User> {
         @Override
         public void add(User data) {
                 storage.add(data);
+                updateDatabase();
         }
 
         @Override
         public void remove(String id) {
                 storage.removeIf(el -> el.getId().equals(id));
+                updateDatabase();
         }
 
         @Override
@@ -69,5 +89,6 @@ public class UserService implements DAO<User> {
         @Override
         public void update(User data) {
                 storage.add(data);
+                updateDatabase();
         }
 }
