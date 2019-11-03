@@ -1,6 +1,9 @@
 package Booking;
 
+import Flight.Flight;
+
 public class Booking {
+    private Flight flight;
     private int date;
     private int price;
     private int serialNumber;
