@@ -28,4 +28,7 @@ public class UserController {
         public static UserController create() {
                 return new UserController();
         }
+        public ArrayList<User> getAllUsers() {
+                return userService.getAllUsers();
+        }
 }
