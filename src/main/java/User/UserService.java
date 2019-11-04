@@ -91,4 +91,15 @@ public class UserService implements DAO<User> {
                 storage.add(data);
                 updateDatabase();
         }
+
+        public void eraseData() {
+                try {
+                        BufferedWriter bw = new BufferedWriter(
+                                new FileWriter(users));
+                        bw.write("");
+                        bw.close();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
+        }
 }

@@ -1,5 +1,6 @@
 package User;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,15 +21,22 @@ public class UserControllerTest {
                 u2 = new User("Tester2", "Testing2", "test2", "1000001");
         }
 
+        @After
+        public void after() {
+                userController.eraseAllData();
+        }
         @Test
         public void registerNewUser() {
-
                 boolean res = userController.registerUser(u1);
                 boolean expected = true;
                 assertThat(res, equalTo(expected));
+        }
 
-                res = userController.registerUser(u1);
-                expected = false;
+        @Test
+        public void registerAlreadyExistingUser() {
+                userController.registerUser(u1);
+                boolean res = userController.registerUser(u1);
+                boolean expected = false;
                 assertThat(res, equalTo(expected));
         }
 
@@ -48,6 +56,7 @@ public class UserControllerTest {
 
         @Test
         public void getUserInfo() {
+                userController.registerUser(u1);
                 ArrayList<String> bookings = userController.getUserInfo(u1);
                 ArrayList<String> expectedBookings = new ArrayList<String>() {{
                         add(u1.getName());
@@ -60,6 +69,7 @@ public class UserControllerTest {
 
         @Test
         public void deleteUser() {
+                userController.registerUser(u1);
                 boolean res = userController.deleteUser(u1);
                 boolean expected = true;
                 assertThat(res, equalTo(expected));

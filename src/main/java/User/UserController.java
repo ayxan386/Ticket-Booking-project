@@ -39,4 +39,8 @@ public class UserController {
         public Set<User> getAllUsers() {
                 return userService.getAllUsers();
         }
+
+        public void eraseAllData() {
+                userService.eraseData();
+        }
 }
