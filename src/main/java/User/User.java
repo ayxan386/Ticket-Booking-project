@@ -5,13 +5,34 @@ public class User {
         private final String surname;
         private final String nickname;
         private final String id;
+        private final String password;
 
-
-        public User(String name, String surname, String nickname, String id) {
+        public User(String name, String surname, String nickname, String password) {
                 this.name = name;
                 this.surname = surname;
                 this.nickname = nickname;
-                this.id = id;
+                this.password = password;
+                this.id = String.valueOf(nickname.hashCode());
+        }
+
+        public User(User u, String password) {
+                this.name = u.getName();
+                this.surname = u.getSurname();
+                this.nickname = u.getNickname();
+                this.password = password;
+                this.id = String.valueOf(nickname.hashCode());
+        }
+
+        public User(String name, String surname, String nickname) {
+                this.name = name;
+                this.surname = surname;
+                this.nickname = nickname;
+                this.password = "";
+                this.id = String.valueOf(nickname.hashCode());
+        }
+
+        public String getPassword() {
+                return password;
         }
 
         public String getName() {
