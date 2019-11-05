@@ -1,9 +1,11 @@
 package Flight;
 
+import FancyString.FancyString;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Flight {
+public class Flight implements FancyString {
         private final String id;
         private final String from;
         private final String to;
@@ -56,5 +58,11 @@ public class Flight {
         @Override
         public int hashCode() {
                 return getId().hashCode();
+        }
+
+
+        @Override
+        public String fancyString() {
+                return String.format("<<%s>> %s ==> %s", getId(), getFrom(), getTo());
         }
 }
