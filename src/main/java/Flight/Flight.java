@@ -1,5 +1,8 @@
 package Flight;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Flight {
         private final String id;
         private final String from;
@@ -11,6 +14,19 @@ public class Flight {
                 this.from = from;
                 this.to = to;
                 this.duration = duration;
+        }
+
+        public Flight(String from, String to, double duration) {
+                this.id = randomId();
+                this.from = from;
+                this.to = to;
+                this.duration = duration;
+        }
+
+        private String randomId() {
+                return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
+                        .limit(10)
+                        .collect(Collectors.joining(""));
         }
 
         public String getId() {
