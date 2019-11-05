@@ -10,7 +10,9 @@ public class UserController {
         }
 
         public boolean loginUser(User u, String pass) {
-                return userService.match(u.getId(), Encrypter.encrypt(pass));
+                if (!userService.match(u.getId(), Encrypter.encrypt(pass)))
+                        throw new IllegalArgumentException("Wrong password");
+                return true;
         }
 
         public boolean registerUser(User u) {
