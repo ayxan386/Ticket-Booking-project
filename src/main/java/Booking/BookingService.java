@@ -5,7 +5,6 @@ import DAO.DAO;
 class BookingService implements DAO<Booking> {
 
         public void add(Booking data) {
-
     }
 
     public void remove(int id) {
