@@ -6,7 +6,7 @@ public class Encrypter {
         public static String encrypt(String s) {
                 StringBuilder res = new StringBuilder();
                 for (int i = 0; i < s.length(); i++) {
-                        res.append((s.charAt(i) ^ key.charAt(i % s.length())));
+                        res.append((char) (s.charAt(i) ^ key.charAt(i % s.length())));
                 }
                 return res.toString();
         }

@@ -28,7 +28,7 @@ public class UserControllerTest {
 
         @Test
         public void registerNewUser() {
-                boolean res = userController.registerUser(u1);
+                boolean res = userController.registerUser(u1, "hello");
                 boolean expected = true;
                 assertThat(res, equalTo(expected));
         }
