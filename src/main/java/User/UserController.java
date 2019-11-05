@@ -1,7 +1,6 @@
 package User;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class UserController {
         private UserService userService;
@@ -10,12 +9,17 @@ public class UserController {
                 userService = new UserService();
         }
 
-        boolean loginUser(User u) {
-                throw new IllegalArgumentException("Not implemented yet");
+        boolean loginUser(User u, String pass) {
+                return userService.match(u.getId(), Encrypter.encrypt(pass));
         }
 
         boolean registerUser(User u) {
                 return userService.smartAdd(u);
+        }
+
+        boolean registerUser(User u, String pass) {
+                pass = Encrypter.encrypt(pass);
+                return userService.smartAdd(new User(u, pass));
         }
 
         ArrayList<String> getUserInfo(User u) {
@@ -34,10 +38,6 @@ public class UserController {
 
         public static UserController create() {
                 return new UserController();
-        }
-
-        public Set<User> getAllUsers() {
-                return userService.getAllUsers();
         }
 
         public void eraseAllData() {

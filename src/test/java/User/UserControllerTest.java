@@ -10,24 +10,25 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class UserControllerTest {
-        private UserController userController = UserController.create();
+        private UserController userController;
         private User u1;
         private User u2;
 
         @Before
         public void setup() {
-                System.out.println(userController.getAllUsers());
-                u1 = new User("Tester", "Testing", "test", "1000000");
-                u2 = new User("Tester2", "Testing2", "test2", "1000001");
+                userController = UserController.create();
+                u1 = new User("Tester", "Testing", "test");
+                u2 = new User("Tester2", "Testing2", "test2");
         }
 
         @After
         public void after() {
                 userController.eraseAllData();
         }
+
         @Test
         public void registerNewUser() {
-                boolean res = userController.registerUser(u1);
+                boolean res = userController.registerUser(u1, "hello");
                 boolean expected = true;
                 assertThat(res, equalTo(expected));
         }
@@ -42,14 +43,20 @@ public class UserControllerTest {
 
         @Test
         public void loginNonExistingUser() {
-                boolean res = userController.loginUser(u2);
-                boolean expected = false;
-                assertThat(res, equalTo(expected));
+                userController.registerUser(u1, "hello");
+                try {
+                        userController.loginUser(u2, "hellomypassword");
+                } catch (Exception e) {
+                        String res = e.getMessage();
+                        String expected = "No value present";
+                        assertThat(res, equalTo(expected));
+                }
         }
 
         @Test
         public void loginExistingUser() {
-                boolean res = userController.loginUser(u1);
+                userController.registerUser(u1, "hello");
+                boolean res = userController.loginUser(u1, "hello");
                 boolean expected = true;
                 assertThat(res, equalTo(expected));
         }
