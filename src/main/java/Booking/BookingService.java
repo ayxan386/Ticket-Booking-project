@@ -6,7 +6,6 @@ class BookingService implements DAO<Booking> {
 
         @Override
         public void add(Booking data) {
-
     }
 
         @Override

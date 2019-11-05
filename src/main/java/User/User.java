@@ -22,7 +22,6 @@ public class User {
                 this.password = password;
                 this.id = String.valueOf(nickname.hashCode());
         }
-
         public User(String name, String surname, String nickname) {
                 this.name = name;
                 this.surname = surname;
@@ -33,6 +32,7 @@ public class User {
 
         public String getPassword() {
                 return password;
+                this.id = String.valueOf(nickname.hashCode());
         }
 
         public String getName() {

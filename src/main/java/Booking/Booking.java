@@ -4,6 +4,8 @@ import Flight.Flight;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Booking {
         private Flight flight;
@@ -17,6 +19,14 @@ public class Booking {
                 this.date = date;
                 this.price = price;
                 this.serialNumber = serialNumber;
+                Class = aClass;
+        }
+
+        public Booking(Flight flight, LocalDateTime date, String price, boolean aClass) {
+                this.flight = flight;
+                this.date = date;
+                this.price = price;
+                this.serialNumber = randomId();
                 Class = aClass;
         }
 
@@ -63,5 +73,11 @@ public class Booking {
 
         public void setPrice(String price) {
                 this.price = price;
+        }
+
+        private String randomId() {
+                return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
+                        .limit(10)
+                        .collect(Collectors.joining(""));
         }
 }
