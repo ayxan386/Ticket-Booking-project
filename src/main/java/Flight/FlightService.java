@@ -12,6 +12,11 @@ private FlightDAO flightDAO;
     public FlightService() {
 
     }
+    public boolean smartAdd(Flight data) {
+        if (flightDAO.contains(data)) return false;
+        flightDAO.add(data);
+        return true;
+    }
 
     public boolean smartRemove(Flight data) {
         if (flightDAO.contains(data)) {

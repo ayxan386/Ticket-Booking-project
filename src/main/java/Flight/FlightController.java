@@ -40,7 +40,7 @@ public class FlightController {
 
 
     public boolean addFlight(Flight f) {
-        throw new IllegalArgumentException("Not implemented yet");
+        return flightService.smartAdd(f);
     }
 
 
