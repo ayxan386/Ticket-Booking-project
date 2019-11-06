@@ -1,5 +1,9 @@
 package DAO;
 
+import Flight.Flight;
+
+import java.util.ArrayList;
+
 public interface FDAO <T> {
     void add(T data);
 
@@ -8,6 +12,8 @@ public interface FDAO <T> {
     T get(String id);
 
     void update(T data);
+
+    ArrayList<T> getAllData();
 
     T findFromTo(String form, String to);
 }

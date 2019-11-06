@@ -32,7 +32,7 @@ public class User {
 
         public String getPassword() {
                 return password;
-                this.id = String.valueOf(nickname.hashCode());
+//                this.id = String.valueOf(nickname.hashCode());
         }
 
         public String getName() {

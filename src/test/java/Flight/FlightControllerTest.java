@@ -1,5 +1,6 @@
 package Flight;
 
+import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,29 +45,31 @@ public class FlightControllerTest {
         @Test
         public void getFlightInfo() {
                 flightController.addFlight(f1);
-                String res = flightController.getFlightInfo(f1.getId());
-                String expected = "from Baku to Kiev";
-                assertThat(res, equalToIgnoringCase(expected));
+                Flight res = flightController.getFlightInfo(f1.getId());
+                String expected = "Baku";
+                assertThat(res.getFrom(), equalToIgnoringCase(expected));
         }
+
+
 
         @Test
         public void getNonExistingFlightInfo() {
                 flightController.addFlight(f1);
                 try {
-                        String res = flightController.getFlightInfo(f2.getId());
+                        Flight res = flightController.getFlightInfo(f2.getId());
                 } catch (Exception e) {
                         String mess = e.getMessage();
                         assertThat(mess, equalToIgnoringCase("User not found"));
                 }
         }
 
-        @Test
-        public void getAllFlights() {
-                flightController.addFlight(f1);
-                ArrayList<Flight> allFlights = flightController.getAllFlights();
-                assertThat(allFlights, hasItem(f1));
-                assertThat(allFlights, not(hasItem(f2)));
-        }
+//        @Test
+//        public void getAllFlights() {
+//                flightController.addFlight(f1);
+//                ArrayList<Flight> allFlights = flightController.getAllFlights();
+//                assertThat(allFlights, hasItem(f1));
+//                assertThat(allFlights, not(hasItem(f2)));
+//        }
 
         @Test
         public void findFlightFromTo() {

@@ -26,14 +26,11 @@ public class FlightController {
 
 
 
-//    public ArrayList<Flight> getAllFlights(Flight flight) {
-//        Flight temp = flightService.get(flight.getId());
-//        return new ArrayList<Flight>() {{
-//            add(temp.getFrom());
-//            add(temp.getTo());
-//            add(Double.toString(temp.getDuration()));
-//            add(temp.getId());
-//        }};
+//    public ArrayList<Flight> getAllFlights() {
+//        ArrayList<Flight> allData = new ArrayList<Flight>();
+//
+//        allData.add(flightService.getALLData());
+//    return allData;
 //    }
 
 

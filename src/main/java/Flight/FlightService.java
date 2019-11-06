@@ -34,6 +34,10 @@ private FlightDAO flightDAO;
         return flightDAO.get(id);
     }
 
+//    public Flight getALLData() {
+//        return flightDAO.getAllData();
+//    }
+
 
     public Flight findFromTo(String form, String to) {
         return flightDAO.findFromTo(form,to);

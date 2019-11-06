@@ -6,6 +6,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 
 public class FlightDAO implements FDAO<Flight> {
@@ -48,6 +52,15 @@ public class FlightDAO implements FDAO<Flight> {
         return storage.stream()
                 .filter(el -> el.getId().equals(id))
                 .findFirst().get();
+    }
+    @Override
+    public ArrayList<Flight> getAllData() {
+        ArrayList<Flight> allData = new ArrayList<Flight>();
+
+
+
+        return allData;
+
     }
 
     @Override
