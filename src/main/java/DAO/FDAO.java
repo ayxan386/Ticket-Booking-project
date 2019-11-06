@@ -1,7 +1,6 @@
 package DAO;
 
-
-public interface DAO <T> {
+public interface FDAO <T> {
     void add(T data);
 
     void remove(String id);
@@ -10,5 +9,5 @@ public interface DAO <T> {
 
     void update(T data);
 
-
+    T findFromTo(String form, String to);
 }
