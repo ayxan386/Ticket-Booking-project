@@ -9,26 +9,38 @@ public class UserController {
                 userService = new UserService();
         }
 
-        boolean loginUser(User u) {
-                throw new IllegalArgumentException("Not implemented yet");
+        boolean loginUser(User u, String pass) {
+                return userService.match(u.getId(), Encrypter.encrypt(pass));
         }
 
         boolean registerUser(User u) {
-                throw new IllegalArgumentException("Not implemented yet");
+                return userService.smartAdd(u);
+        }
+
+        boolean registerUser(User u, String pass) {
+                pass = Encrypter.encrypt(pass);
+                return userService.smartAdd(new User(u, pass));
         }
 
         ArrayList<String> getUserInfo(User u) {
-                throw new IllegalArgumentException("Not implemented yet");
+                User temp = userService.get(u.getId());
+                return new ArrayList<String>() {{
+                        add(temp.getName());
+                        add(temp.getSurname());
+                        add(temp.getNickname());
+                        add(temp.getId());
+                }};
         }
 
         boolean deleteUser(User u) {
-                throw new IllegalArgumentException("Not implemented yet");
+                return userService.smartRemove(u);
         }
 
         public static UserController create() {
                 return new UserController();
         }
-        public ArrayList<User> getAllUsers() {
-                return userService.getAllUsers();
+
+        public void eraseAllData() {
+                userService.eraseData();
         }
 }

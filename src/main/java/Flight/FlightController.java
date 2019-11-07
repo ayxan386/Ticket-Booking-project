@@ -30,4 +30,8 @@ public class FlightController {
         public static FlightController create() {
                 return new FlightController();
         }
+
+        public void eraseAll() {
+                throw new IllegalArgumentException("Not implemented yet");
+        }
 }

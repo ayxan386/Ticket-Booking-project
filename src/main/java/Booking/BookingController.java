@@ -18,4 +18,8 @@ public class BookingController {
         public boolean remove(Booking booking) {
                 throw new IllegalArgumentException("Not implemented yet");
         }
+
+        public void eraseAll() {
+                throw new IllegalArgumentException("Not implemented yet");
+        }
 }

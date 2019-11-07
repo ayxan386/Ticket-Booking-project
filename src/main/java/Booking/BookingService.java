@@ -4,18 +4,22 @@ import DAO.DAO;
 
 class BookingService implements DAO<Booking> {
 
-    public void add(Booking data) {
+        @Override
+        public void add(Booking data) {
     }
 
-    public void remove(int id) {
+        @Override
+        public void remove(String id) {
 
     }
 
-    public Booking get(int id) {
+        @Override
+        public Booking get(String id) {
         return null;
     }
 
-    public void update(Booking data, int date, int number) {
+        @Override
+        public void update(Booking data) {
 
     }
 }
