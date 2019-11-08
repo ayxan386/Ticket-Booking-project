@@ -9,20 +9,22 @@ public class UserController {
                 userService = new UserService();
         }
 
-        boolean loginUser(User u, String pass) {
-                return userService.match(u.getId(), Encrypter.encrypt(pass));
+        public boolean loginUser(User u, String pass) {
+                if (!userService.match(u.getId(), Encrypter.encrypt(pass)))
+                        throw new IllegalArgumentException("Wrong password");
+                return true;
         }
 
-        boolean registerUser(User u) {
+        public boolean registerUser(User u) {
                 return userService.smartAdd(u);
         }
 
-        boolean registerUser(User u, String pass) {
+        public boolean registerUser(User u, String pass) {
                 pass = Encrypter.encrypt(pass);
                 return userService.smartAdd(new User(u, pass));
         }
 
-        ArrayList<String> getUserInfo(User u) {
+        public ArrayList<String> getUserInfo(User u) {
                 User temp = userService.get(u.getId());
                 return new ArrayList<String>() {{
                         add(temp.getName());

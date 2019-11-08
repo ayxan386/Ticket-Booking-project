@@ -8,9 +8,9 @@ public class User {
         private final String password;
 
         public User(String name, String surname, String nickname, String password) {
-                this.name = name;
-                this.surname = surname;
-                this.nickname = nickname;
+                this.name = name.toLowerCase();
+                this.surname = surname.toLowerCase();
+                this.nickname = nickname.toLowerCase();
                 this.password = password;
                 this.id = String.valueOf(nickname.hashCode());
         }
@@ -22,17 +22,17 @@ public class User {
                 this.password = password;
                 this.id = String.valueOf(nickname.hashCode());
         }
+
         public User(String name, String surname, String nickname) {
-                this.name = name;
-                this.surname = surname;
-                this.nickname = nickname;
+                this.name = name.toLowerCase();
+                this.surname = surname.toLowerCase();
+                this.nickname = nickname.toLowerCase();
                 this.password = "";
                 this.id = String.valueOf(nickname.hashCode());
         }
 
         public String getPassword() {
                 return password;
-                this.id = String.valueOf(nickname.hashCode());
         }
 
         public String getName() {
