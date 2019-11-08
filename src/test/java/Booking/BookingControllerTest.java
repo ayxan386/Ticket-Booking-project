@@ -48,16 +48,16 @@ public class BookingControllerTest {
         @Test
         public void getBookingByID() {
                 bookingController.add(b1);
-                Booking res = bookingController.get(b1.getSerialNumber());
+                Booking res = bookingController.get(b1.getID());
                 assertThat(res, equalTo(b1));
         }
 
         @Test
         public void getBookingByIDNonExisting() {
                 try {
-                        Booking res = bookingController.get(b2.getSerialNumber());
+                        Booking res = bookingController.get(b2.getID());
                 } catch (Exception e) {
-                        assertThat(e.getMessage(), containsString("No such element found"));
+                        assertThat(e.getMessage(), containsString("No"));
                 }
         }
 
