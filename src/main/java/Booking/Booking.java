@@ -9,88 +9,89 @@ import java.util.stream.Stream;
 
 public class Booking {
 
-    private Flight flight;
-    private LocalDateTime date;
-    private String price;
-    private String ID;
-    private boolean Class;
+  private Flight flight;
+  private LocalDateTime date;
+  private String price;
+  private String ID;
+  private boolean Class;
 
-    public Booking(Flight flight, LocalDateTime date, String price, String ID, boolean aClass) {
+  public Booking(Flight flight, LocalDateTime date, String price, String ID, boolean aClass) {
 
-        this.flight = flight;
-        this.date = date;
-        this.price = price;
-        this.ID = ID;
-        this.Class = aClass;
-    }
+    this.flight = flight;
+    this.date = date;
+    this.price = price;
+    this.ID = ID;
+    this.Class = aClass;
+  }
 
-    public Booking(Flight flight, LocalDateTime date, String price, boolean aClass) {
-        this.flight = flight;
-        this.date = date;
-        this.price = price;
-        this.ID = randomId();
-        Class = aClass;
-    }
+  public Booking(Flight flight, LocalDateTime date, String price, boolean aClass) {
+    this.flight = flight;
+    this.date = date;
+    this.price = price;
+    this.ID = randomId();
+    Class = aClass;
+  }
 
-    public Booking() {
+  public Booking() {
 
-    }
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Booking)) return false;
-        Booking booking = (Booking) o;
-        return Objects.equals(getID(), booking.getID());
-    }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Booking)) return false;
+    Booking booking = (Booking) o;
+    return Objects.equals(getID(), booking.getID());
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getID());
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(getID());
+  }
 
-    public boolean isClass() {
-        return Class;
-    }
-    public void setFlight(Flight flight) {
-        this.flight = flight;
-    }
+  public boolean isClass() {
+    return Class;
+  }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
+  public void setFlight(Flight flight) {
+    this.flight = flight;
+  }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
+  public void setDate(LocalDateTime date) {
+    this.date = date;
+  }
 
-    public void setClass(boolean aClass) {
-        Class = aClass;
-    }
+  public void setPrice(String price) {
+    this.price = price;
+  }
 
-    public String getID() {
-        return ID;
-    }
+  public void setClass(boolean aClass) {
+    Class = aClass;
+  }
 
-    public LocalDateTime getDate() {
-        return date;
-    }
+  public String getID() {
+    return ID;
+  }
 
-    public String getPrice() {
-        return price;
-    }
+  public LocalDateTime getDate() {
+    return date;
+  }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+  public String getPrice() {
+    return price;
+  }
 
-    public Flight getFlight() {
-        return flight;
-    }
+  public void setID(String ID) {
+    this.ID = ID;
+  }
 
-    private String randomId() {
-        return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
-                .limit(10)
-                .collect(Collectors.joining(""));
-    }
+  public Flight getFlight() {
+    return flight;
+  }
+
+  private String randomId() {
+    return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
+        .limit(10)
+        .collect(Collectors.joining(""));
+  }
 }

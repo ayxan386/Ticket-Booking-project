@@ -49,4 +49,8 @@ public class UserController {
         public void eraseAllData() {
                 userService.eraseData();
         }
+
+        public User getLoggedUser() {
+                return loggedUser;
+        }
 }

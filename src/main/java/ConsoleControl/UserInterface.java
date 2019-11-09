@@ -1,15 +1,12 @@
 package ConsoleControl;
 
 import Booking.BookingController;
-import ConsoleControl.Printer.Printer;
-import FancyString.FancyString;
+import ConsoleControl.FlightCommands.FlightCommands;
 import Flight.FlightController;
 import User.User;
 import User.UserController;
 
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class UserInterface {
         private Scanner scanner = new Scanner(System.in);
@@ -37,10 +34,10 @@ public class UserInterface {
                         CommandList command = CommandParser.parse(comm);
                         switch (command) {
                                 case ONLINE_BOARD:
-                                        printAllFlights();
+                                        FlightCommands.printAllFlights(flightController);
                                         break;
                                 case SHOW_FLIGHT_INFO: /*showFlightInfo()*/
-                                        printDetailedFlight();
+                                        FlightCommands.printDetailedFlight(flightController, scanner);
                                         break;
                                 case SEARCH_AND_BOOK_FLIGHT: /*searchAndBookFlight*/
                                         break;
@@ -57,12 +54,6 @@ public class UserInterface {
                                         break;
                         }
                 } while (true);
-        }
-
-        private void printDetailedFlight() {
-                System.out.println("What is the ID of the flight");
-                String flightInfo = flightController.getFlightInfo(scanner.nextLine());
-                System.out.println(flightInfo);
         }
 
         private void showCommands() {
@@ -121,13 +112,5 @@ public class UserInterface {
                         default:
                                 throw new IllegalStateException("Unexpected value: " + answer.toLowerCase());
                 }
-        }
-
-        private void printAllFlights() {
-                List<FancyString> allFlights = flightController.getAllFlights()
-                        .stream()
-                        .map(el -> (FancyString) el)
-                        .collect(Collectors.toList());
-                Printer.print(allFlights);
         }
 }

@@ -1,11 +1,11 @@
 package ConsoleControl;
 
-public class  CommandParser {
+public class CommandParser {
 
-    public static CommandList[] showCommands() {
-        CommandList[] commands  = CommandList.values();
-        return commands;
-    }
+  public static CommandList[] showCommands() {
+    CommandList[] commands = CommandList.values();
+    return commands;
+  }
 
   public static CommandList parse(String command) {
     command = command.toUpperCase();

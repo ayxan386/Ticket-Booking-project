@@ -1,5 +1,5 @@
 package FancyString;
 
 public interface FancyString {
-        String fancyString();
+  String fancyString();
 }
