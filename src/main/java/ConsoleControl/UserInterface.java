@@ -32,33 +32,29 @@ public class UserInterface {
         }
 
         private void chooseCommand() {
-                Scanner scanner = new Scanner(System.in);
                 do {
-                        int temp = scanner.nextInt();
-                        switch (temp) {
-                                case 1:
+                        String comm = scanner.nextLine();
+                        CommandList command = CommandParser.parse(comm);
+                        switch (command) {
+                                case ONLINE_BOARD:
                                         printAllFlights();
                                         break;
-                                case 2: /*showFlightInfo()*/
+                                case SHOW_FLIGHT_INFO: /*showFlightInfo()*/
                                         printDetailedFlight();
                                         break;
-                                case 3: /*searchAndBookFlight*/
+                                case SEARCH_AND_BOOK_FLIGHT: /*searchAndBookFlight*/
                                         break;
-                                case 4: /*cancelBooking()*/
+                                case CANCEL_BOOKING: /*cancelBooking()*/
                                         break;
-                                case 5: /*myFlights()*/
+                                case MY_BOOKINGS: /*myBookings()*/
                                         break;
-                                case 6: /*myBookings()*/
+                                case END_SESSION: /*endSession()*/
                                         break;
-                                case 7: /*endSession()*/
+                                case HELP: /*Help*/
                                         break;
-                                case 8: /*Help*/
-                                        break;
-                                case 9:
+                                case EXIT:
                                         System.exit(0);
                                         break;
-                                default:
-                                        throw new IllegalArgumentException("No such command");
                         }
                 } while (true);
         }

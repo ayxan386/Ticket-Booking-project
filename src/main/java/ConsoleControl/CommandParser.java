@@ -7,7 +7,7 @@ public class  CommandParser {
         return commands;
     }
 
-  public CommandList parse(String command) {
+  public static CommandList parse(String command) {
     command = command.toUpperCase();
     switch (command) {
       case "ONLINE BOARD":
@@ -22,20 +22,17 @@ public class  CommandParser {
       case "CANCEL BOOKING":
       case "4":
         return CommandList.CANCEL_BOOKING;
-      case "MY FLIGHTS":
-      case "5":
-        return CommandList.MY_FLIGHTS;
       case "MY BOOKINGS":
-      case "6":
+      case "5":
         return CommandList.MY_BOOKINGS;
       case "END SESSION":
-      case "7":
+      case "6":
         return CommandList.END_SESSION;
       case "HELP":
-      case "8":
+      case "7":
         return CommandList.HELP;
       case "EXIT":
-      case "9":
+      case "8":
         return CommandList.EXIT;
       default:
         throw new IllegalArgumentException("Command not found");
