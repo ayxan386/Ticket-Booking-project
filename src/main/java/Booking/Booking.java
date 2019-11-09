@@ -16,7 +16,6 @@ public class Booking {
   private boolean Class;
 
   public Booking(Flight flight, LocalDateTime date, String price, String ID, boolean aClass) {
-
     this.flight = flight;
     this.date = date;
     this.price = price;
