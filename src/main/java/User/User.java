@@ -57,6 +57,14 @@ public class User {
     return bookings;
   }
 
+  public boolean hasBooking(String id) {
+    return bookings.contains(new Booking(id));
+  }
+
+  public void removeBooking(String id) {
+    bookings.remove(new Booking(id));
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

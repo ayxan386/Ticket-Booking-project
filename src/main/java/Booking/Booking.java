@@ -27,6 +27,10 @@ public class Booking {
     this(flight, date, price, randomId(), aClass);
   }
 
+  public Booking(String id) {
+    this(null, null, "", id, true);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

@@ -2,7 +2,7 @@ package ConsoleControl;
 
 import Booking.BookingController;
 import ConsoleControl.FlightCommands.FlightCommands;
-import ConsoleControl.UserCommands.UserCommands;
+import ConsoleControl.UserCommands.UserBookingCommands;
 import Flight.FlightController;
 import User.User;
 import User.UserController;
@@ -45,7 +45,7 @@ public class UserInterface {
         case CANCEL_BOOKING: /*cancelBooking()*/
           break;
         case MY_BOOKINGS: /*myBookings()*/
-          UserCommands.showMyBookings(userController, bookingController);
+          UserBookingCommands.showMyBookings(userController, bookingController);
           break;
         case END_SESSION: /*endSession()*/
           break;
