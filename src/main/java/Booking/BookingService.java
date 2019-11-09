@@ -1,26 +1,46 @@
 package Booking;
 
-import DAO.DAO;
+import java.util.HashSet;
 
-class BookingService implements DAO<Booking> {
+class BookingService {
+    private BookingDAO bookingDAO;
 
-        @Override
-        public void add(Booking data) {
-
+    public BookingService(BookingDAO bookingDAO) {
+        this.bookingDAO = bookingDAO;
     }
 
-        @Override
-        public void remove(String id) {
-
+    public BookingService() {
+        this.bookingDAO = new BookingDAO();
     }
 
-        @Override
-        public Booking get(String id) {
-        return null;
+    public boolean smartAdd(Booking data) {
+        if (bookingDAO.contains(data)) return false;
+        bookingDAO.add(data);
+        return true;
     }
 
-        @Override
-        public void update(Booking data) {
-
+    public boolean smartRemove(Booking data) {
+        if (bookingDAO.contains(data)) {
+            bookingDAO.remove(data.getID());
+            return true;
+        }
+        return false;
     }
+
+    public void eraseData() {
+        bookingDAO.eraseData();
+    }
+
+    public Booking get(String id) {
+        return bookingDAO.get(id);
+    }
+
+    public void update(Booking data) {
+        bookingDAO.update(data);
+    }
+
+    public HashSet<Booking> getAllBookingInfo() {
+        return bookingDAO.getAllBookingInfo();
+    }
+
 }

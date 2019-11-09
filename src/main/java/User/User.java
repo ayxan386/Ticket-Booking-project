@@ -37,6 +37,10 @@ public class User {
                 bookings.add(b.getID());
         }
 
+        public String getPassword() {
+                return password;
+        }
+
         public String getName() {
                 return name;
         }

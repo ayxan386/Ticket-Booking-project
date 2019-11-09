@@ -1,5 +1,4 @@
 package Flight;
-
 import DAO.DAO;
 
 public class FlightService implements DAO<Flight> {

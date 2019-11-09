@@ -1,5 +1,6 @@
 package Flight;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +21,11 @@ public class FlightControllerTest {
                 f2 = new Flight("000002", "Hell", "Heaven", 666);
         }
 
+        @After
+        public void tearDown() throws Exception {
+                flightController.eraseAll();
+        }
+
         @Test
         public void addFlight() {
                 boolean res = flightController.addFlight(f1);
@@ -29,6 +35,7 @@ public class FlightControllerTest {
 
         @Test
         public void addExistingFlight() {
+                flightController.addFlight(f1);
                 boolean res = flightController.addFlight(f1);
                 boolean expected = false;
                 assertThat(res, equalTo(expected));
@@ -36,6 +43,7 @@ public class FlightControllerTest {
 
         @Test
         public void getFlightInfo() {
+                flightController.addFlight(f1);
                 String res = flightController.getFlightInfo(f1.getId());
                 String expected = "from Baku to Kiev";
                 assertThat(res, equalToIgnoringCase(expected));
@@ -43,6 +51,7 @@ public class FlightControllerTest {
 
         @Test
         public void getNonExistingFlightInfo() {
+                flightController.addFlight(f1);
                 try {
                         String res = flightController.getFlightInfo(f2.getId());
                 } catch (Exception e) {
@@ -53,6 +62,7 @@ public class FlightControllerTest {
 
         @Test
         public void getAllFlights() {
+                flightController.addFlight(f1);
                 ArrayList<Flight> allFlights = flightController.getAllFlights();
                 assertThat(allFlights, hasItem(f1));
                 assertThat(allFlights, not(hasItem(f2)));
@@ -60,6 +70,7 @@ public class FlightControllerTest {
 
         @Test
         public void findFlightFromTo() {
+                flightController.addFlight(f1);
                 Flight res = flightController.findFlightFromTo(f1.getFrom(), f1.getTo());
                 assertThat(res, equalTo(f1));
         }
