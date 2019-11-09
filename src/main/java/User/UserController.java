@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class UserController {
         private UserService userService;
+        private User loggedUser;
 
         private UserController() {
                 userService = new UserService();
@@ -12,15 +13,18 @@ public class UserController {
         public boolean loginUser(User u, String pass) {
                 if (!userService.match(u.getId(), Encrypter.encrypt(pass)))
                         throw new IllegalArgumentException("Wrong password");
+                loggedUser = u;
                 return true;
         }
 
         public boolean registerUser(User u) {
+                loggedUser = u;
                 return userService.smartAdd(u);
         }
 
         public boolean registerUser(User u, String pass) {
                 pass = Encrypter.encrypt(pass);
+                loggedUser = u;
                 return userService.smartAdd(new User(u, pass));
         }
 
