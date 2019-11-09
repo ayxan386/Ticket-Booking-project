@@ -9,10 +9,10 @@ import java.util.stream.Stream;
 
 public class Booking {
 
-  private Flight flight;
-  private LocalDateTime date;
-  private String price;
-  private String ID;
+  private final Flight flight;
+  private final LocalDateTime date;
+  private final String price;
+  private final String ID;
   private boolean Class;
 
   public Booking(Flight flight, LocalDateTime date, String price, String ID, boolean aClass) {
@@ -25,15 +25,7 @@ public class Booking {
   }
 
   public Booking(Flight flight, LocalDateTime date, String price, boolean aClass) {
-    this.flight = flight;
-    this.date = date;
-    this.price = price;
-    this.ID = randomId();
-    Class = aClass;
-  }
-
-  public Booking() {
-
+    this(flight, date, price, randomId(), aClass);
   }
 
   @Override
@@ -53,18 +45,6 @@ public class Booking {
     return Class;
   }
 
-  public void setFlight(Flight flight) {
-    this.flight = flight;
-  }
-
-  public void setDate(LocalDateTime date) {
-    this.date = date;
-  }
-
-  public void setPrice(String price) {
-    this.price = price;
-  }
-
   public void setClass(boolean aClass) {
     Class = aClass;
   }
@@ -81,15 +61,11 @@ public class Booking {
     return price;
   }
 
-  public void setID(String ID) {
-    this.ID = ID;
-  }
-
   public Flight getFlight() {
     return flight;
   }
 
-  private String randomId() {
+  private static String randomId() {
     return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
         .limit(10)
         .collect(Collectors.joining(""));
