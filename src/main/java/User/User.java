@@ -1,17 +1,40 @@
 package User;
 
+import Booking.Booking;
+
+import java.util.ArrayList;
+
 public class User {
         private final String name;
         private final String surname;
         private final String nickname;
         private final String id;
+        private final String password;
+        private final ArrayList<String> bookings;
 
+        public User(String name, String surname, String nickname, String password) {
+                this.name = name.toLowerCase();
+                this.surname = surname.toLowerCase();
+                this.nickname = nickname.toLowerCase();
+                this.password = password;
+                this.id = String.valueOf(nickname.hashCode());
+                bookings = new ArrayList<>();
+        }
 
-        public User(String name, String surname, String nickname, String id) {
-                this.name = name;
-                this.surname = surname;
-                this.nickname = nickname;
-                this.id = id;
+        public User(User u, String password) {
+                this(u.getName(), u.getSurname(), u.getNickname(), password);
+        }
+
+        public User(String name, String surname, String nickname) {
+                this(name, surname, nickname, "");
+        }
+
+        public String getPassword() {
+                return password;
+        }
+
+        public void addBooking(Booking b) {
+                bookings.add(b.getID());
         }
 
         public String getName() {
