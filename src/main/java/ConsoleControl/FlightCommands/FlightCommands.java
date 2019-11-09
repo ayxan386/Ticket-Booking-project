@@ -1,7 +1,7 @@
 package ConsoleControl.FlightCommands;
 
+import ConsoleControl.Printer.FancyString.FancyString;
 import ConsoleControl.Printer.Printer;
-import FancyString.FancyString;
 import Flight.FlightController;
 
 import java.util.List;
