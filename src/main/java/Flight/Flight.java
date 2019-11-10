@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Flight implements FancyString {
-  private final String id;
-  private final String from;
-  private final String to;
-  private final double duration;
+  private String id;
+  private  String from;
+  private  String to;
+  private  double duration;
 
   public Flight(String id, String from, String to, double duration) {
     this.id = id;
@@ -24,6 +24,11 @@ public class Flight implements FancyString {
     this.to = to;
     this.duration = duration;
   }
+
+  public Flight() {
+
+  }
+
 
   private String randomId() {
     return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
@@ -45,6 +50,22 @@ public class Flight implements FancyString {
 
   public double getDuration() {
     return duration;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public void setFrom(String from) {
+    this.from = from;
+  }
+
+  public void setTo(String to) {
+    this.to = to;
+  }
+
+  public void setDuration(double duration) {
+    this.duration = duration;
   }
 
   @Override

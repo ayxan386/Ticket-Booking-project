@@ -1,5 +1,4 @@
 package Flight;
-
 import java.util.ArrayList;
 
 public class FlightController {
@@ -10,28 +9,39 @@ public class FlightController {
     this.flightService = new FlightService();
   }
 
-  public String getFlightInfo(String id) {
-    throw new IllegalArgumentException("Not implemented yet");
+  public Flight getFlightInfo(String id) {
+
+    Flight info = new Flight();
+    info.setId(id);
+    info.setFrom(flightService.get(id).getFrom());
+    info.setTo(flightService.get(id).getTo());
+    info.setDuration(flightService.get(id).getDuration());
+
+    return info;
   }
 
-  public ArrayList<Flight> getAllFlights() {
-    throw new IllegalArgumentException("Not implemented yet");
-  }
+//    public ArrayList<Flight> getAllFlights() {
+//        ArrayList<Flight> allData = new ArrayList<Flight>();
+//
+//        allData.add(flightService.getALLData());
+//    return allData;
+//    }
 
   public boolean addFlight(Flight f) {
-    throw new IllegalArgumentException("Not implemented yet");
+    return flightService.smartAdd(f);
   }
 
   public Flight findFlightFromTo(String from, String to) {
-    throw new IllegalArgumentException("Not implemented yet");
+    return flightService.findFromTo(from,to);
   }
-
 
   public static FlightController create() {
     return new FlightController();
   }
 
   public void eraseAll() {
-    throw new IllegalArgumentException("Not implemented yet");
+
+    flightService.eraseData();
+
   }
 }
