@@ -8,8 +8,8 @@ import java.util.Set;
 
 public class UserDAO implements DAO<User> {
 
-  private Set<User> storage;
   private final static File users = new File("data", "users.txt");
+  private Set<User> storage;
 
   public UserDAO() {
     storage = new HashSet<User>();

@@ -1,4 +1,5 @@
 package Booking;
+
 import DAO.DAO;
 
 import java.io.BufferedWriter;
@@ -9,11 +10,11 @@ import java.util.HashSet;
 
 public class BookingDAO implements DAO<Booking> {
 
-  private HashSet<Booking> storage;
   private final static File bookings = new File("data", "bookings.txt");
+  private HashSet<Booking> storage;
 
   public BookingDAO() {
-     ;
+    storage = new HashSet<Booking>();
   }
 
   public void updateDatabase() {

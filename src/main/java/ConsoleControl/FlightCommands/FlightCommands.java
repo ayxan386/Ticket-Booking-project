@@ -2,6 +2,7 @@ package ConsoleControl.FlightCommands;
 
 import ConsoleControl.Printer.FancyString.FancyString;
 import ConsoleControl.Printer.Printer;
+import Flight.Flight;
 import Flight.FlightController;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class FlightCommands {
 
   public static void printDetailedFlight(FlightController flightController, Scanner scanner) {
     System.out.println("What is the ID of the flight");
-    String flightInfo = flightController.getFlightInfo(scanner.nextLine());
-    System.out.println(flightInfo);
+    Flight flightInfo = flightController.getFlightInfo(scanner.nextLine());
+    System.out.println(flightInfo.fancyString());
   }
 }

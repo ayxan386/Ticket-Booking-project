@@ -1,7 +1,8 @@
 package Flight;
-import User.User;
 
-public class FlightService  {
+import java.util.Set;
+
+public class FlightService {
 
   private FlightDAO flightDAO;
 
@@ -10,8 +11,9 @@ public class FlightService  {
   }
 
   public FlightService() {
-
+    flightDAO = new FlightDAO();
   }
+
   public boolean smartAdd(Flight data) {
     if (flightDAO.contains(data)) return false;
     flightDAO.add(data);
@@ -34,13 +36,13 @@ public class FlightService  {
     return flightDAO.get(id);
   }
 
-// public Flight getALLData() {
-//        return flightDAO.getAllData();
-//    }
+  public Set<Flight> getALLData() {
+    return flightDAO.getAllData();
+  }
 
 
   public Flight findFromTo(String form, String to) {
-    return flightDAO.findFromTo(form,to);
+    return flightDAO.findFromTo(form, to);
   }
 
 
