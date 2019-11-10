@@ -3,7 +3,6 @@ package Flight;
 import DAO.DAO;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +22,6 @@ public class FlightDAO implements DAO<Flight> {
           new FileReader(flights));
       bw.lines().forEach(el -> {
         String[] cols = el.split("/");
-        System.out.println(Arrays.toString(cols));
         Flight f = new Flight(cols[0], cols[1], cols[2], Double.parseDouble(cols[3]));
         res.add(f);
       });

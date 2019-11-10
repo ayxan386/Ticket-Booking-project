@@ -33,7 +33,6 @@ public class UserInterface {
       showCommands();
       String comm = scanner.nextLine();
       try {
-        System.out.println(comm);
         CommandList command = CommandParser.parse(comm);
         switch (command) {
           case ONLINE_BOARD:
@@ -106,7 +105,6 @@ public class UserInterface {
   }
 
   private void greetUser() {
-    System.out.println(flightController.getAllFlights().size());
     if (flightController.getAllFlights().size() < 3) {
       FlightCommands.generateDatabase(flightController, scanner);
     }
