@@ -1,27 +1,47 @@
 package Flight;
+import User.User;
 
-import DAO.DAO;
+public class FlightService  {
 
-public class FlightService implements DAO<Flight> {
+  private FlightDAO flightDAO;
 
-  @Override
-  public void add(Flight data) {
-
+  public FlightService(FlightDAO flightDAO) {
+    this.flightDAO = flightDAO;
   }
 
-  @Override
-  public void remove(String id) {
+  public FlightService() {
 
   }
+  public boolean smartAdd(Flight data) {
+    if (flightDAO.contains(data)) return false;
+    flightDAO.add(data);
+    return true;
+  }
 
-  @Override
+  public boolean smartRemove(Flight data) {
+    if (flightDAO.contains(data)) {
+      flightDAO.remove(data.getId());
+      return true;
+    }
+    return false;
+  }
+
+  public void eraseData() {
+    flightDAO.eraseData();
+  }
+
   public Flight get(String id) {
-    return null;
+    return flightDAO.get(id);
   }
 
-  @Override
-  public void update(Flight data) {
+// public Flight getALLData() {
+//        return flightDAO.getAllData();
+//    }
 
+
+  public Flight findFromTo(String form, String to) {
+    return flightDAO.findFromTo(form,to);
   }
+
 
 }
