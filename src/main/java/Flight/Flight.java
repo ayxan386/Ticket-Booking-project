@@ -31,7 +31,7 @@ public class Flight implements FancyString {
 
 
   private String randomId() {
-    return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
+    return Stream.generate(() -> String.valueOf((char) ((int) (Math.random() * 26) + 'a')))
         .limit(10)
         .collect(Collectors.joining(""));
   }

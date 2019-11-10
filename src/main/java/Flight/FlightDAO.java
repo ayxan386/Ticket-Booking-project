@@ -2,17 +2,37 @@ package Flight;
 
 import DAO.DAO;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class FlightDAO implements DAO<Flight> {
 
   private final static File flights = new File("data", "flights.txt");
-  private Set<Flight> storage = new HashSet<Flight>();
+  private Set<Flight> storage;
+
+  public FlightDAO() {
+    storage = loadDataBase();
+  }
+
+  private Set<Flight> loadDataBase() {
+    HashSet<Flight> res = new HashSet<Flight>();
+    try {
+      BufferedReader bw = new BufferedReader(
+          new FileReader(flights));
+      bw.lines().forEach(el -> {
+        String[] cols = el.split("/");
+        System.out.println(Arrays.toString(cols));
+        Flight f = new Flight(cols[0], cols[1], cols[2], Double.parseDouble(cols[3]));
+        res.add(f);
+      });
+      bw.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return res;
+  }
 
   public void updateDatabase() {
     try {

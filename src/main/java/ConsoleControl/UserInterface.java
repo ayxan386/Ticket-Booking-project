@@ -25,35 +25,40 @@ public class UserInterface {
   public static void main(String[] args) {
     UserInterface t = new UserInterface();
     t.greetUser();
-    t.showCommands();
     t.chooseCommand();
   }
 
   private void chooseCommand() {
     do {
+      showCommands();
       String comm = scanner.nextLine();
-      CommandList command = CommandParser.parse(comm);
-      switch (command) {
-        case ONLINE_BOARD:
-          FlightCommands.printAllFlights(flightController);
-          break;
-        case SHOW_FLIGHT_INFO: /*showFlightInfo()*/
-          FlightCommands.printDetailedFlight(flightController, scanner);
-          break;
-        case SEARCH_AND_BOOK_FLIGHT: /*searchAndBookFlight*/
-          break;
-        case CANCEL_BOOKING: /*cancelBooking()*/
-          break;
-        case MY_BOOKINGS: /*myBookings()*/
-          UserBookingCommands.showMyBookings(userController, bookingController);
-          break;
-        case END_SESSION: /*endSession()*/
-          break;
-        case HELP: /*Help*/
-          break;
-        case EXIT:
-          System.exit(0);
-          break;
+      try {
+        System.out.println(comm);
+        CommandList command = CommandParser.parse(comm);
+        switch (command) {
+          case ONLINE_BOARD:
+            FlightCommands.printAllFlights(flightController);
+            break;
+          case SHOW_FLIGHT_INFO: /*showFlightInfo()*/
+            FlightCommands.printDetailedFlight(flightController, scanner);
+            break;
+          case SEARCH_AND_BOOK_FLIGHT: /*searchAndBookFlight*/
+            break;
+          case CANCEL_BOOKING: /*cancelBooking()*/
+            break;
+          case MY_BOOKINGS: /*myBookings()*/
+            UserBookingCommands.showMyBookings(userController, bookingController);
+            break;
+          case END_SESSION: /*endSession()*/
+            break;
+          case HELP: /*Help*/
+            break;
+          case EXIT:
+            System.exit(0);
+            break;
+        }
+      } catch (Exception e) {
+        System.out.println("Command not found please try again");
       }
     } while (true);
   }
@@ -101,6 +106,11 @@ public class UserInterface {
   }
 
   private void greetUser() {
+    System.out.println(flightController.getAllFlights().size());
+    if (flightController.getAllFlights().size() < 3) {
+      FlightCommands.generateDatabase(flightController, scanner);
+    }
+
     System.out.println("Hello and welcome to our Flight booking app");
     System.out.println("Do you have an account?");
     String answer = scanner.nextLine();
