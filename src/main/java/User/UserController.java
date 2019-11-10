@@ -11,6 +11,10 @@ public class UserController {
     userService = new UserService();
   }
 
+  public static UserController create() {
+    return new UserController();
+  }
+
   public boolean loginUser(User u, String pass) {
     if (!userService.match(u.getId(), Encrypter.encrypt(pass)))
       throw new IllegalArgumentException("Wrong password");
@@ -41,10 +45,6 @@ public class UserController {
 
   boolean deleteUser(User u) {
     return userService.smartRemove(u);
-  }
-
-  public static UserController create() {
-    return new UserController();
   }
 
   public void eraseAllData() {

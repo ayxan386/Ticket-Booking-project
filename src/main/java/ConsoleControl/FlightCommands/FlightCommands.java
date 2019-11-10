@@ -2,7 +2,9 @@ package ConsoleControl.FlightCommands;
 
 import ConsoleControl.Printer.FancyString.FancyString;
 import ConsoleControl.Printer.Printer;
+import Flight.Flight;
 import Flight.FlightController;
+import RandomGenerator.GeneratorController;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +21,20 @@ public class FlightCommands {
 
   public static void printDetailedFlight(FlightController flightController, Scanner scanner) {
     System.out.println("What is the ID of the flight");
-    String flightInfo = flightController.getFlightInfo(scanner.nextLine());
-    System.out.println(flightInfo);
+    Flight flightInfo = flightController.getFlightInfo(scanner.nextLine());
+    System.out.println(flightInfo.fancyString());
+  }
+
+  public static void generateDatabase(FlightController flightController, Scanner scanner) {
+    System.out.println("You don't have a database properly setup");
+    System.out.println("Would you like us to make a new one?(yes/no)");
+    String ans = scanner.nextLine();
+    switch (ans.toLowerCase()) {
+      case "yes":
+        new GeneratorController().generateNewDataBase(flightController);
+        break;
+      case "no":
+        return;
+    }
   }
 }

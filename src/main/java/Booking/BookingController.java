@@ -11,16 +11,16 @@ public class BookingController {
     this.bookingService = bookingService;
   }
 
+  public static BookingController create() {
+    return new BookingController();
+  }
+
   public Booking get(String id) {
     return bookingService.get(id);
   }
 
   public boolean add(Booking book) {
     return bookingService.smartAdd(book);
-  }
-
-  public static BookingController create() {
-    return new BookingController();
   }
 
   public void eraseAll() {

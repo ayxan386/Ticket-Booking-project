@@ -31,6 +31,12 @@ public class Booking {
     this(null, null, "", id, true);
   }
 
+  private static String randomId() {
+    return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
+        .limit(10)
+        .collect(Collectors.joining(""));
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -66,11 +72,5 @@ public class Booking {
 
   public Flight getFlight() {
     return flight;
-  }
-
-  private static String randomId() {
-    return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
-        .limit(10)
-        .collect(Collectors.joining(""));
   }
 }

@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 
 public class Flight implements FancyString {
   private String id;
-  private  String from;
-  private  String to;
-  private  double duration;
+  private String from;
+  private String to;
+  private double duration;
 
   public Flight(String id, String from, String to, double duration) {
     this.id = id;
@@ -31,7 +31,7 @@ public class Flight implements FancyString {
 
 
   private String randomId() {
-    return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
+    return Stream.generate(() -> String.valueOf((char) ((int) (Math.random() * 26) + 'a')))
         .limit(10)
         .collect(Collectors.joining(""));
   }
@@ -40,28 +40,28 @@ public class Flight implements FancyString {
     return id;
   }
 
-  public String getFrom() {
-    return from;
-  }
-
-  public String getTo() {
-    return to;
-  }
-
-  public double getDuration() {
-    return duration;
-  }
-
   public void setId(String id) {
     this.id = id;
+  }
+
+  public String getFrom() {
+    return from;
   }
 
   public void setFrom(String from) {
     this.from = from;
   }
 
+  public String getTo() {
+    return to;
+  }
+
   public void setTo(String to) {
     this.to = to;
+  }
+
+  public double getDuration() {
+    return duration;
   }
 
   public void setDuration(double duration) {
@@ -74,6 +74,11 @@ public class Flight implements FancyString {
     if (!(o instanceof Flight)) return false;
     Flight flight = (Flight) o;
     return getId().equals(flight.getId());
+  }
+
+  @Override
+  public String toString() {
+    return String.format("Flight{id='%s', from='%s', to='%s'}", id, from, to);
   }
 
   @Override
