@@ -1,20 +1,19 @@
 package Booking;
 
 import DAO.DAO;
+import Flight.Flight;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashSet;
+import java.util.Set;
 
 public class BookingDAO implements DAO<Booking> {
 
   private final static File bookings = new File("data", "bookings.txt");
-  private HashSet<Booking> storage;
+  private Set<Booking> storage;
 
   public BookingDAO() {
-    storage = new HashSet<Booking>();
+    storage = loadDataBase();
   }
 
   public void updateDatabase() {
@@ -23,18 +22,32 @@ public class BookingDAO implements DAO<Booking> {
           new FileWriter(bookings));
       for (Booking bookings : storage) {
         bw.write(
-            String.format("%s/%s/%s/%s/%s\n",
-                bookings.getFlight(),
+            String.format("%s/%s\n",
                 bookings.getID(),
-                bookings.getDate(),
-                bookings.getPrice(),
-                bookings.getClass()
+                bookings.getFlight()
             ));
       }
       bw.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  private Set<Booking> loadDataBase() {
+    HashSet<Booking> res = new HashSet<Booking>();
+    try {
+      BufferedReader bw = new BufferedReader(
+          new FileReader(bookings));
+      bw.lines().forEach(el -> {
+        String[] cols = el.split("/");
+        Booking b = new Booking(Flight.stringToFlight(cols[0]), cols[2]);
+        res.add(b);
+      });
+      bw.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return res;
   }
 
   @Override
@@ -77,7 +90,7 @@ public class BookingDAO implements DAO<Booking> {
     }
   }
 
-  public HashSet<Booking> getAllBookingInfo() {
+  public Set<Booking> getAllBookingInfo() {
     return storage;
   }
 }

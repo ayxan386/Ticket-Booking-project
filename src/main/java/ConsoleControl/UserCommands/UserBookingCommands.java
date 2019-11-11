@@ -2,6 +2,8 @@ package ConsoleControl.UserCommands;
 
 import Booking.Booking;
 import Booking.BookingController;
+import Flight.Flight;
+import Flight.FlightController;
 import User.User;
 import User.UserController;
 
@@ -27,12 +29,44 @@ public class UserBookingCommands {
       String id = scanner.nextLine();
       User user = loggedUser.get();
       if (!user.hasBooking(id)) throw new IllegalArgumentException("No such booking exists");
-
       user.removeBooking(id);
       bookingController.remove(new Booking(id));
-
     } else {
       throw new IllegalArgumentException("You are not logged in");
     }
+  }
+
+  public static void bookNewFlight(UserController userController, BookingController bookingController, FlightController flightController, Scanner scanner) {
+    System.out.println("Do you know the id of the flight?");
+    String ans = scanner.nextLine();
+    switch (ans.toLowerCase()) {
+      case "yes":
+        bookWithId(userController, bookingController, flightController, scanner);
+        break;
+      case "no":
+        //bookWithoutId(userController, bookingController, flightController,scanner);
+        break;
+      default:
+        throw new IllegalArgumentException("No such command found");
+    }
+  }
+
+  private static void bookWithId(UserController userController, BookingController bookingController, FlightController flightController, Scanner scanner) {
+    System.out.println("Please enter the id of the flight");
+    String id = scanner.nextLine();
+    System.out.println("How many tickets would you like to book?");
+    int number = scanner.nextInt();
+    Flight f = flightController.getFlightInfo(id);
+    if (f.getSeats() > number) {
+      System.out.println("Sorry that flight does not have enough seats");
+      return;
+    }
+
+    Booking b = new Booking(f);
+    bookingController.add(b);
+
+    User user = userController.getLoggedUser().get();
+    user.addBooking(b);
+    userController.update(user);
   }
 }

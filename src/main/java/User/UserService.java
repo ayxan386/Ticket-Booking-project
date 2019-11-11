@@ -37,4 +37,8 @@ public class UserService {
   public boolean match(String id, String pass) throws NoSuchElementException {
     return userDAO.get(id).getPassword().equals(pass);
   }
+
+  public void update(User user) {
+    userDAO.update(user);
+  }
 }

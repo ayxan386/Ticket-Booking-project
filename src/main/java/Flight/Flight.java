@@ -9,20 +9,26 @@ public class Flight implements FancyString {
   private String id;
   private String from;
   private String to;
+  private int seats;
   private double duration;
+  private double price;
 
-  public Flight(String id, String from, String to, double duration) {
+  public Flight(String id, String from, String to, int seats, double duration, double price) {
     this.id = id;
     this.from = from;
     this.to = to;
     this.duration = duration;
+    this.seats = seats;
+    this.price = price;
   }
 
-  public Flight(String from, String to, double duration) {
+  public Flight(String from, String to, int seats, double duration, double price) {
+    this.price = price;
     this.id = randomId();
     this.from = from;
     this.to = to;
     this.duration = duration;
+    this.seats = seats;
   }
 
   public Flight() {
@@ -31,7 +37,7 @@ public class Flight implements FancyString {
 
 
   private String randomId() {
-    return Stream.generate(() -> String.valueOf((char) ((int) (Math.random() * 26) + 'a')))
+    return Stream.generate(() -> String.valueOf((char) ((int) (Math.random() * 26) + 'A')))
         .limit(10)
         .collect(Collectors.joining(""));
   }
@@ -68,6 +74,14 @@ public class Flight implements FancyString {
     this.duration = duration;
   }
 
+  public double getPrice() {
+    return price;
+  }
+
+  public int getSeats() {
+    return seats;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -78,7 +92,7 @@ public class Flight implements FancyString {
 
   @Override
   public String toString() {
-    return String.format("Flight{id='%s', from='%s', to='%s'}", id, from, to);
+    return String.format("{%s&%s&%s&%d&%f&%f}", id, from, to, seats, duration, price);
   }
 
   @Override
@@ -86,9 +100,16 @@ public class Flight implements FancyString {
     return getId().hashCode();
   }
 
-
   @Override
   public String fancyString() {
     return String.format("<<%s>> %s ==> %s", getId(), getFrom(), getTo());
+  }
+
+  public static Flight stringToFlight(String str) {
+    str = str.replace("{", "");
+    str = str.replace("}", "");
+    String[] data = str.split("&");
+    return new Flight(data[0], data[1], data[2],
+        Integer.parseInt(data[3]), Double.parseDouble(data[4]), Double.parseDouble(data[5]));
   }
 }

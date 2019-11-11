@@ -3,16 +3,17 @@ package User;
 import DAO.DAO;
 
 import java.io.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class UserDAO implements DAO<User> {
 
   private final static File users = new File("data", "users.txt");
-  private Set<User> storage;
+  private List<User> storage;
 
   public UserDAO() {
-    storage = new HashSet<User>();
+    storage = new ArrayList<User>();
     loadAllUser();
   }
 
@@ -22,7 +23,15 @@ public class UserDAO implements DAO<User> {
           new FileReader(users));
       br.lines().forEach(row -> {
         String[] columns = row.split("/");
+        String bookingsJoined = columns[5];
+
+        bookingsJoined = bookingsJoined.replace("[", "").replace("]", "");
+
+        List<String> bookings = Arrays.asList(bookingsJoined.split(","));
+
         User temp = new User(columns[0], columns[1], columns[2], columns[4]);
+        bookings.forEach(temp::addBooking);
+
         storage.add(temp);
       });
       br.close();
@@ -37,12 +46,13 @@ public class UserDAO implements DAO<User> {
           new FileWriter(users));
       for (User user : storage) {
         bw.write(
-            String.format("%s/%s/%s/%s/%s\n",
+            String.format("%s/%s/%s/%s/%s/%s\n",
                 user.getName(),
                 user.getSurname(),
                 user.getNickname(),
                 user.getId(),
-                user.getPassword()
+                user.getPassword(),
+                user.bookingToString()
             ));
       }
       bw.close();
@@ -72,6 +82,7 @@ public class UserDAO implements DAO<User> {
 
   @Override
   public void update(User data) {
+    storage.remove(data);
     storage.add(data);
   }
 

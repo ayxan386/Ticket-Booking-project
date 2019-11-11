@@ -22,7 +22,10 @@ public class FlightDAO implements DAO<Flight> {
           new FileReader(flights));
       bw.lines().forEach(el -> {
         String[] cols = el.split("/");
-        Flight f = new Flight(cols[0], cols[1], cols[2], Double.parseDouble(cols[3]));
+        Flight f = new Flight(cols[0], cols[1], cols[2],
+            Integer.parseInt(cols[3]),
+            Double.parseDouble(cols[4]),
+            Double.parseDouble(cols[5]));
         res.add(f);
       });
       bw.close();
@@ -38,11 +41,13 @@ public class FlightDAO implements DAO<Flight> {
           new FileWriter(flights));
       for (Flight flight : storage) {
         bw.write(
-            String.format("%s/%s/%s/%s\n",
+            String.format("%s/%s/%s/%s/%s/%s\n",
                 flight.getId(),
                 flight.getFrom(),
                 flight.getTo(),
-                String.valueOf(flight.getDuration())
+                String.valueOf(flight.getSeats()),
+                String.valueOf(flight.getDuration()),
+                String.valueOf(flight.getPrice())
             ));
       }
       bw.close();

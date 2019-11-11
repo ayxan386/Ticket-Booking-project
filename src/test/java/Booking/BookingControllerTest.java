@@ -5,8 +5,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
@@ -20,9 +18,9 @@ public class BookingControllerTest {
         @Before
         public void setup() {
                 bookingController = BookingController.create();
-                f = new Flight("00001", "Baku", "Kiev", 2.5);
-                b1 = new Booking(f, LocalDateTime.now(), "99.65", "000001", false);
-                b2 = new Booking(f, LocalDateTime.now(), "199.65", "000002", true);
+          f = new Flight("00001", "Baku", "Kiev", 75, 2.5, 75.75);
+          b1 = new Booking(f);
+          b2 = new Booking(f);
         }
 
         @After

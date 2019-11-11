@@ -54,4 +54,8 @@ public class UserController {
   public Optional<User> getLoggedUser() {
     return loggedUser;
   }
+
+  public void update(User user) {
+    userService.update(user);
+  }
 }
