@@ -38,19 +38,23 @@ public class UserInterface {
           case ONLINE_BOARD:
             FlightCommands.printAllFlights(flightController);
             break;
-          case SHOW_FLIGHT_INFO: /*showFlightInfo()*/
+          case SHOW_FLIGHT_INFO:
             FlightCommands.printDetailedFlight(flightController, scanner);
             break;
-          case SEARCH_AND_BOOK_FLIGHT: /*searchAndBookFlight*/
+          case SEARCH_AND_BOOK_FLIGHT:
+            FlightCommands.searchAndBookFlight(flightController,bookingController,scanner);
             break;
-          case CANCEL_BOOKING: /*cancelBooking()*/
+          case CANCEL_BOOKING:
+            UserBookingCommands.cancelBookings(userController,bookingController,scanner);
             break;
-          case MY_BOOKINGS: /*myBookings()*/
-            UserBookingCommands.showMyBookings(userController, bookingController);
+          case MY_BOOKINGS:
+            UserBookingCommands.MyBookings( userController,bookingController);
             break;
-          case END_SESSION: /*endSession()*/
+          case END_SESSION:
+            userLogOut();
             break;
-          case HELP: /*Help*/
+          case HELP:
+            help();
             break;
           case EXIT:
             System.exit(0);
@@ -60,6 +64,19 @@ public class UserInterface {
         System.out.println("Command not found please try again");
       }
     } while (true);
+  }
+
+  private void help() {
+    System.out.println("If you need any help these are our contacts:");
+    System.out.println("Aykhan:\n email:Aykhan's email\n ");
+    System.out.println("Orkhan:\n email:orxan.hashimov2014@gmail.com\n ");
+    System.out.println("Ismayil:\n email: Ismayil's email\n ");
+  }
+
+  private void userLogOut() {
+    System.out.println("Okay good bye");
+    UserInterface userInterface = new UserInterface();
+    userInterface.greetUser();
   }
 
   private void showCommands() {
@@ -122,5 +139,7 @@ public class UserInterface {
       default:
         throw new IllegalStateException("Unexpected value: " + answer.toLowerCase());
     }
+
   }
+
 }

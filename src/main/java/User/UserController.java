@@ -54,4 +54,6 @@ public class UserController {
   public Optional<User> getLoggedUser() {
     return loggedUser;
   }
+
+
 }

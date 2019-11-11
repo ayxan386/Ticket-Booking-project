@@ -1,5 +1,7 @@
 package Booking;
 
+import java.util.HashSet;
+
 public class BookingController {
   private final BookingService bookingService;
 
@@ -31,4 +33,7 @@ public class BookingController {
     return bookingService.smartRemove(book);
   }
 
+  public HashSet<Booking> getAllBookingInfo() {
+    return bookingService.getAllBookingInfo();
+  }
 }

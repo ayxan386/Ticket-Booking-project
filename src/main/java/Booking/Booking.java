@@ -1,5 +1,4 @@
 package Booking;
-
 import Flight.Flight;
 
 import java.time.LocalDateTime;
@@ -10,11 +9,17 @@ import java.util.stream.Stream;
 public class Booking {
 
   private final Flight flight;
-  private final LocalDateTime date;
-  private final String price;
+  private   LocalDateTime date;
+  private   String price;
   private final String ID;
-  private boolean Class;
+  private  boolean Class;
 
+
+  public Booking (Flight flight) {
+    this.flight = flight;
+    this.ID = flight.getId();
+
+  }
   public Booking(Flight flight, LocalDateTime date, String price, String ID, boolean aClass) {
     this.flight = flight;
     this.date = date;
@@ -54,9 +59,7 @@ public class Booking {
     return Class;
   }
 
-  public void setClass(boolean aClass) {
-    Class = aClass;
-  }
+
 
   public String getID() {
     return ID;

@@ -1,11 +1,10 @@
 package Booking;
 
 import DAO.DAO;
+import Flight.Flight;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.awt.print.Book;
+import java.io.*;
 import java.util.HashSet;
 
 public class BookingDAO implements DAO<Booking> {
@@ -14,7 +13,24 @@ public class BookingDAO implements DAO<Booking> {
   private HashSet<Booking> storage;
 
   public BookingDAO() {
-    storage = new HashSet<Booking>();
+    storage =  loadDataBase();
+  }
+
+  private HashSet<Booking> loadDataBase() {
+    HashSet<Booking> res = new HashSet<>();
+    try {
+      BufferedReader bw = new BufferedReader(
+              new FileReader(bookings));
+      bw.lines().forEach(el -> {
+        String[] cols = el.split("/");
+        Booking booking = new Booking(cols[1]);
+        res.add(booking);
+      });
+      bw.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return res;
   }
 
   public void updateDatabase() {
@@ -78,6 +94,7 @@ public class BookingDAO implements DAO<Booking> {
   }
 
   public HashSet<Booking> getAllBookingInfo() {
+    if (storage.isEmpty()) System.out.println("Booking Info is empty");
     return storage;
   }
 }

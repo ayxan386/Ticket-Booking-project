@@ -1,11 +1,15 @@
 package ConsoleControl.FlightCommands;
 
+import Booking.Booking;
+import Booking.BookingController;
 import ConsoleControl.Printer.FancyString.FancyString;
 import ConsoleControl.Printer.Printer;
 import Flight.Flight;
 import Flight.FlightController;
 import RandomGenerator.GeneratorController;
+import User.UserController;
 
+import java.awt.print.Book;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -36,5 +40,13 @@ public class FlightCommands {
       case "no":
         return;
     }
+  }
+
+  public static void searchAndBookFlight(FlightController flightController, BookingController bookingController, Scanner scanner) {
+     System.out.println("What is the ID of the flight");
+     Flight flightInfo = flightController.getFlightInfo(scanner.nextLine());
+
+     Booking book = new Booking(flightInfo);
+     bookingController.add(book);
   }
 }
