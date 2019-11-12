@@ -39,4 +39,8 @@ public class FlightController {
   public void update(Flight f) {
     flightService.update(f);
   }
+
+  public Set<Flight> findFlightsFromTo(String from, String to) {
+    return flightService.findFlightFromTo(from, to);
+  }
 }

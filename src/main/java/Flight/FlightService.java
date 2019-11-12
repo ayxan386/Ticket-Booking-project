@@ -45,6 +45,10 @@ public class FlightService {
     return flightDAO.findFromTo(form, to);
   }
 
+  public Set<Flight> findFlightFromTo(String form, String to) {
+    return flightDAO.findFlightsFromTo(form, to);
+  }
+
 
   public void update(Flight f) {
     flightDAO.update(f);

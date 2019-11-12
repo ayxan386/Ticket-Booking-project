@@ -9,6 +9,7 @@ import User.UserController;
 
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.Set;
 
 public class UserBookingCommands {
   public static void showMyBookings(UserController userController, BookingController bookingController) {
@@ -48,11 +49,30 @@ public class UserBookingCommands {
         bookWithId(userController, bookingController, flightController, scanner);
         break;
       case "no":
-        //bookWithoutId(userController, bookingController, flightController,scanner);
+        bookWithoutId(userController, bookingController, flightController, scanner);
         break;
       default:
         throw new IllegalArgumentException("No such command found");
     }
+  }
+
+  private static void bookWithoutId(UserController userController, BookingController bookingController, FlightController flightController, Scanner scanner) {
+    System.out.println("Please enter the following");
+
+    System.out.println("From: ");
+    String from = scanner.nextLine();
+
+    System.out.println("To: ");
+    String to = scanner.nextLine();
+
+    Set<Flight> flights = flightController.findFlightsFromTo(from, to);
+
+    for (Flight f : flights) {
+      System.out.println("-------------------------");
+      System.out.println(f.detailedString());
+      System.out.println("-------------------------");
+    }
+    bookWithId(userController, bookingController, flightController, scanner);
   }
 
   private static void bookWithId(UserController userController, BookingController bookingController, FlightController flightController, Scanner scanner) {
