@@ -21,8 +21,9 @@ public class FlightCommands {
 
   public static void printDetailedFlight(FlightController flightController, Scanner scanner) {
     System.out.println("What is the ID of the flight");
-    Flight flightInfo = flightController.getFlightInfo(scanner.nextLine());
-    System.out.println(flightInfo.fancyString());
+    String id = scanner.nextLine();
+    Flight flightInfo = flightController.getFlightInfo(id);
+    System.out.println(flightInfo.detailedString());
   }
 
   public static void generateDatabase(FlightController flightController, Scanner scanner) {

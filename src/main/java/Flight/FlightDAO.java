@@ -88,7 +88,9 @@ public class FlightDAO implements DAO<Flight> {
 
   @Override
   public void update(Flight data) {
+    storage.remove(data);
     storage.add(data);
+    updateDatabase();
   }
 
 

@@ -46,4 +46,7 @@ public class FlightService {
   }
 
 
+  public void update(Flight f) {
+    flightDAO.update(f);
+  }
 }

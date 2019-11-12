@@ -15,14 +15,7 @@ public class FlightController {
   }
 
   public Flight getFlightInfo(String id) {
-
-    Flight info = new Flight();
-    info.setId(id);
-    info.setFrom(flightService.get(id).getFrom());
-    info.setTo(flightService.get(id).getTo());
-    info.setDuration(flightService.get(id).getDuration());
-
-    return info;
+    return flightService.get(id);
   }
 
   public Set<Flight> getAllFlights() {
@@ -41,5 +34,9 @@ public class FlightController {
 
     flightService.eraseData();
 
+  }
+
+  public void update(Flight f) {
+    flightService.update(f);
   }
 }

@@ -84,6 +84,7 @@ public class UserDAO implements DAO<User> {
   public void update(User data) {
     storage.remove(data);
     storage.add(data);
+    updateDatabase();
   }
 
 

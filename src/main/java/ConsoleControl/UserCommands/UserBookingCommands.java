@@ -57,16 +57,22 @@ public class UserBookingCommands {
     System.out.println("How many tickets would you like to book?");
     int number = scanner.nextInt();
     Flight f = flightController.getFlightInfo(id);
-    if (f.getSeats() > number) {
+    if (f.getSeats() < number) {
       System.out.println("Sorry that flight does not have enough seats");
       return;
     }
-
     Booking b = new Booking(f);
     bookingController.add(b);
 
     User user = userController.getLoggedUser().get();
     user.addBooking(b);
     userController.update(user);
+
+    f.bookSeat(number);
+
+    flightController.update(f);
+
+    System.out.println("You have successfully booked new flight");
+    System.out.printf("ID of new booking: %s\n", b.getID());
   }
 }

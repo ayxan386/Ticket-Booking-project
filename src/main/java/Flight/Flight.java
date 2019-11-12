@@ -78,6 +78,10 @@ public class Flight implements FancyString {
     return price;
   }
 
+  public void bookSeat(int n) {
+    this.seats -= n;
+  }
+
   public int getSeats() {
     return seats;
   }
@@ -112,5 +116,10 @@ public class Flight implements FancyString {
     String[] data = str.split("&");
     return new Flight(data[0], data[1], data[2],
         Integer.parseInt(data[3]), Double.parseDouble(data[4]), Double.parseDouble(data[5]));
+  }
+
+  public String detailedString() {
+    return String.format("<<%s>> %s ==> %s\nAvailable seats: <<%d>>\nCosts: <<%.2f>>\nDuration: <<%.2f>>",
+        id, from, to, seats, price, duration);
   }
 }
