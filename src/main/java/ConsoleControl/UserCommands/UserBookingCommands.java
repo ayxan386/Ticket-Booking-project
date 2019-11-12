@@ -33,7 +33,9 @@ public class UserBookingCommands {
       showMyBookings(userController, bookingController);
 
       System.out.println("Which booking would you like to cancel? (Enter its id)");
+      System.out.println("(to exit enter 0 or exit)");
       String id = scanner.nextLine();
+      if (id.equalsIgnoreCase("exit") || id.equalsIgnoreCase("0")) return;
       User user = loggedUser.get();
       if (!user.hasBooking(id)) throw new IllegalArgumentException("No such booking exists");
       user.removeBooking(id);
@@ -43,7 +45,6 @@ public class UserBookingCommands {
       f.bookSeat(-2);
       flightController.update(f);
       bookingController.remove(b);
-
     } else {
       throw new IllegalArgumentException("You are not logged in");
     }
@@ -51,7 +52,9 @@ public class UserBookingCommands {
 
   public static void bookNewFlight(UserController userController, BookingController bookingController, FlightController flightController, Scanner scanner) {
     System.out.println("Do you know the id of the flight?");
+    System.out.println("(to exit enter 0 or exit)");
     String ans = scanner.nextLine();
+    if (ans.equalsIgnoreCase("exit") || ans.equalsIgnoreCase("0")) return;
     switch (ans.toLowerCase()) {
       case "yes":
         bookWithId(userController, bookingController, flightController, scanner);
@@ -66,11 +69,10 @@ public class UserBookingCommands {
 
   private static void bookWithoutId(UserController userController, BookingController bookingController, FlightController flightController, Scanner scanner) {
     System.out.println("Please enter the following");
-
-    System.out.println("From: ");
+    System.out.print("From: ");
     String from = scanner.nextLine();
 
-    System.out.println("To: ");
+    System.out.print("To: ");
     String to = scanner.nextLine();
 
     Set<Flight> flights = flightController.findFlightsFromTo(from, to);

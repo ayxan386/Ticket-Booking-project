@@ -11,11 +11,13 @@ public class GeneratorController {
   private static final List<String> cities = Arrays.asList("Baku", "Kiev", "Moscow",
       "London", "Tokyo", "Paris",
       "Rome", "California", "Washington",
-      "Switzerland");
+      "Switzerland", "OTTAWA", "BRASILIA",
+      "HAVANA", "PRAGUE", "TBILISI",
+      "BERLIN", "NEW DELHI", "TEHRAN");
 
   public void generateNewDataBase(FlightController flightController) {
     Random r = new Random();
-    int total = r.nextInt(75) + 25;
+    int total = r.nextInt(250) + 25;
     for (int i = 0; i < total; i++) {
       String from = cities.get(r.nextInt(cities.size()));
       String to = cities.get(r.nextInt(cities.size()));

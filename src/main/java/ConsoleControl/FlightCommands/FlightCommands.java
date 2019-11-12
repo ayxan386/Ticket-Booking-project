@@ -20,8 +20,10 @@ public class FlightCommands {
   }
 
   public static void printDetailedFlight(FlightController flightController, Scanner scanner) {
-    System.out.println("What is the ID of the flight");
+    System.out.println("What is the ID of the flight?");
+    System.out.println("(to exit enter 0 or exit)");
     String id = scanner.nextLine();
+    if (id.equalsIgnoreCase("exit") || id.equalsIgnoreCase("0")) return;
     Flight flightInfo = flightController.getFlightInfo(id);
     System.out.println(flightInfo.detailedString());
   }
