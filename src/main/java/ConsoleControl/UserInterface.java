@@ -81,6 +81,7 @@ public class UserInterface {
       }
 
 private void showCommands() {
+  System.out.println("---------------------------------------");
     System.out.println("Choose a command from: ");
     for (int i = 0; i < CommandParser.showCommands().length; i++) {
       System.out.println((i + 1) + ") " + CommandParser.showCommands()[i]);
