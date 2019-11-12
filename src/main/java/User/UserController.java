@@ -18,7 +18,7 @@ public class UserController {
   public boolean loginUser(User u, String pass) {
     if (!userService.match(u.getId(), Encrypter.encrypt(pass)))
       throw new IllegalArgumentException("Wrong password");
-    loggedUser = Optional.of(u);
+    loggedUser = Optional.of(userService.get(u.getId()));
     return true;
   }
 

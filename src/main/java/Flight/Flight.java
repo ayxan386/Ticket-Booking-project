@@ -35,6 +35,13 @@ public class Flight implements FancyString {
 
   }
 
+  public static Flight stringToFlight(String str) {
+    str = str.replace("{", "");
+    str = str.replace("}", "");
+    String[] data = str.split("&");
+    return new Flight(data[0], data[1], data[2],
+        Integer.parseInt(data[3]), Double.parseDouble(data[4]), Double.parseDouble(data[5]));
+  }
 
   private String randomId() {
     return Stream.generate(() -> String.valueOf((char) ((int) (Math.random() * 26) + 'A')))
@@ -107,15 +114,6 @@ public class Flight implements FancyString {
   @Override
   public String fancyString() {
     return String.format("<<%s>> %s ==> %s", getId(), getFrom(), getTo());
-  }
-
-  public static Flight stringToFlight(String str) {
-    str = str.replace("{", "");
-    str = str.replace("}", "");
-    System.out.println(str);
-    String[] data = str.split("&");
-    return new Flight(data[0], data[1], data[2],
-        Integer.parseInt(data[3]), Double.parseDouble(data[4]), Double.parseDouble(data[5]));
   }
 
   public String detailedString() {
