@@ -43,7 +43,7 @@ public class FlightDAO implements DAO<Flight> {
           new FileWriter(flights));
       for (Flight flight : storage) {
         bw.write(
-            String.format(Locale.GERMAN, "%s/%s/%s/%s/%.2f/%.2f\n",
+            String.format(Locale.US, "%s/%s/%s/%s/%.2f/%.2f\n",
                 flight.getId(),
                 flight.getFrom(),
                 flight.getTo(),
