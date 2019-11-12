@@ -70,7 +70,7 @@ public class UserInterface {
   private void help() {
     System.out.println("If you need any help these are our contacts:");
     System.out.println("Aykhan:\n email:Aykhan's email\n ");
-    System.out.println("Orkhan:\n email:orxan.hashimov2014@gmail.com\n ");
+    System.out.println("Orkhan:\n email:Orkhan's email \n ");
     System.out.println("Ismayil:\n email: Ismayil's email\n ");
   }
 
