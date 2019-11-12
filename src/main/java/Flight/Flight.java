@@ -92,7 +92,7 @@ public class Flight implements FancyString {
 
   @Override
   public String toString() {
-    return String.format("{%s&%s&%s&%d&%f&%f}", id, from, to, seats, duration, price);
+    return String.format("{%s&%s&%s&%d&%.2f&%.2f}", id, from, to, seats, duration, price);
   }
 
   @Override
