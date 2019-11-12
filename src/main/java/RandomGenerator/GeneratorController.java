@@ -11,7 +11,7 @@ public class GeneratorController {
   private static final List<String> cities = Arrays.asList("Baku", "Kiev", "Moscow",
       "London", "Tokyo", "Paris",
       "Rome", "California", "Washington",
-      "Switzerland");
+      "Switzerland", "");
 
   public void generateNewDataBase(FlightController flightController) {
     Random r = new Random();

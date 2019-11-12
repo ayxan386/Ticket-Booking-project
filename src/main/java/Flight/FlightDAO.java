@@ -4,6 +4,7 @@ import DAO.DAO;
 
 import java.io.*;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -42,7 +43,7 @@ public class FlightDAO implements DAO<Flight> {
           new FileWriter(flights));
       for (Flight flight : storage) {
         bw.write(
-            String.format("%s/%s/%s/%s/%.2f/%.2f\n",
+            String.format(Locale.GERMAN, "%s/%s/%s/%s/%.2f/%.2f\n",
                 flight.getId(),
                 flight.getFrom(),
                 flight.getTo(),
