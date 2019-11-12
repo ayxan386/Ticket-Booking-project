@@ -108,6 +108,7 @@ public class Flight implements FancyString {
   public static Flight stringToFlight(String str) {
     str = str.replace("{", "");
     str = str.replace("}", "");
+    System.out.println(str);
     String[] data = str.split("&");
     return new Flight(data[0], data[1], data[2],
         Integer.parseInt(data[3]), Double.parseDouble(data[4]), Double.parseDouble(data[5]));

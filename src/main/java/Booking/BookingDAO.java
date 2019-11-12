@@ -40,7 +40,7 @@ public class BookingDAO implements DAO<Booking> {
           new FileReader(bookings));
       bw.lines().forEach(el -> {
         String[] cols = el.split("/");
-        Booking b = new Booking(Flight.stringToFlight(cols[0]), cols[2]);
+        Booking b = new Booking(Flight.stringToFlight(cols[1]), cols[0]);
         res.add(b);
       });
       bw.close();
