@@ -25,7 +25,9 @@ public class UserDAO implements DAO<User> {
         String[] columns = row.split("/");
         String bookingsJoined = columns[5];
 
-        bookingsJoined = bookingsJoined.replace("[", "").replace("]", "");
+        bookingsJoined = bookingsJoined.replace("[,", "")
+            .replace("[", "")
+            .replace("]", "");
 
         List<String> bookings = Arrays.asList(bookingsJoined.split(","));
 

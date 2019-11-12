@@ -10,18 +10,20 @@ public class Booking {
 
   private final Flight flight;
   private final String ID;
+  private final int count;
 
-  public Booking(Flight flight, String ID) {
+  public Booking(Flight flight, String ID, int count) {
     this.flight = flight;
     this.ID = ID;
+    this.count = count;
   }
 
-  public Booking(Flight flight) {
-    this(flight, randomId());
+  public Booking(Flight flight, int count) {
+    this(flight, randomId(), count);
   }
 
   public Booking(String id) {
-    this(null, id);
+    this(null, id, 0);
   }
 
   private static String randomId() {
@@ -56,9 +58,13 @@ public class Booking {
     return flight;
   }
 
+  public int getCount() {
+    return count;
+  }
+
   public String toDetailedString() {
     return String.format("-------------------------------\n" +
-        "<<<%s>>>\n %s\n" +
-        "-------------------------------", ID, flight.detailedString());
+        "<<<%s>>> (x%d)\nFlight:{%s}\n" +
+        "-------------------------------", ID, count, flight.detailedString());
   }
 }

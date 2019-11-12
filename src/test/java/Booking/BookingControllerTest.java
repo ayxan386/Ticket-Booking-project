@@ -19,8 +19,8 @@ public class BookingControllerTest {
   public void setup() {
     bookingController = BookingController.create();
     f = new Flight("00001", "Baku", "Kiev", 75, 2.5, 75.75);
-    b1 = new Booking(f);
-    b2 = new Booking(f);
+    b1 = new Booking(f, 1);
+    b2 = new Booking(f, 1);
   }
 
   @After

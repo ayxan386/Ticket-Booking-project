@@ -90,7 +90,7 @@ public class User {
 
   public String bookingToString() {
     StringJoiner res = new StringJoiner(",", "[", "]");
-    bookings.forEach(el -> res.add(el));
+    bookings.forEach(res::add);
     return res.toString();
   }
 }

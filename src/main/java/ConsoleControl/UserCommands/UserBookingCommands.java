@@ -66,7 +66,7 @@ public class UserBookingCommands {
       System.out.println("Sorry that flight does not have enough seats");
       return;
     }
-    Booking b = new Booking(f);
+    Booking b = new Booking(f, number);
     bookingController.add(b);
 
     User user = userController.getLoggedUser().get();

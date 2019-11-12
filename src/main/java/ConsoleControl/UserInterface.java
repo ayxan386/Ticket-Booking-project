@@ -33,9 +33,7 @@ public class UserInterface {
       showCommands();
       String comm = scanner.nextLine();
       try {
-        System.out.println(comm);
         CommandList command = CommandParser.parse(comm);
-        System.out.println(command);
         switch (command) {
           case ONLINE_BOARD:
             FlightCommands.printAllFlights(flightController);

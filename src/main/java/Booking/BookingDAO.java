@@ -22,9 +22,10 @@ public class BookingDAO implements DAO<Booking> {
           new FileWriter(bookings));
       for (Booking bookings : storage) {
         bw.write(
-            String.format("%s/%s\n",
+            String.format("%s/%s/%d\n",
                 bookings.getID(),
-                bookings.getFlight()
+                bookings.getFlight(),
+                bookings.getCount()
             ));
       }
       bw.close();
@@ -40,7 +41,7 @@ public class BookingDAO implements DAO<Booking> {
           new FileReader(bookings));
       bw.lines().forEach(el -> {
         String[] cols = el.split("/");
-        Booking b = new Booking(Flight.stringToFlight(cols[1]), cols[0]);
+        Booking b = new Booking(Flight.stringToFlight(cols[1]), cols[0], Integer.parseInt(cols[2]));
         res.add(b);
       });
       bw.close();
