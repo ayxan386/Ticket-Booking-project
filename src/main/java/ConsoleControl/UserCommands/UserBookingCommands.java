@@ -14,10 +14,13 @@ public class UserBookingCommands {
   public static void showMyBookings(UserController userController, BookingController bookingController) {
     Optional<User> loggedUser = userController.getLoggedUser();
     if (loggedUser.isPresent()) {
+      System.out.println("List of your bookings");
       for (String bookingId : loggedUser.get().getBookings()) {
         Booking b = bookingController.get(bookingId);
-        System.out.println(b);
+        System.out.println(b.toDetailedString());
       }
+    } else {
+      System.out.println("You have no bookings(");
     }
   }
 
@@ -25,6 +28,7 @@ public class UserBookingCommands {
     Optional<User> loggedUser = userController.getLoggedUser();
     if (loggedUser.isPresent()) {
       showMyBookings(userController, bookingController);
+
       System.out.println("Which booking would you like to cancel? (Enter its id)");
       String id = scanner.nextLine();
       User user = loggedUser.get();
@@ -56,6 +60,7 @@ public class UserBookingCommands {
     String id = scanner.nextLine();
     System.out.println("How many tickets would you like to book?");
     int number = scanner.nextInt();
+    scanner.nextLine();
     Flight f = flightController.getFlightInfo(id);
     if (f.getSeats() < number) {
       System.out.println("Sorry that flight does not have enough seats");

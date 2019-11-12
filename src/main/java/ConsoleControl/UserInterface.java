@@ -33,7 +33,9 @@ public class UserInterface {
       showCommands();
       String comm = scanner.nextLine();
       try {
+        System.out.println(comm);
         CommandList command = CommandParser.parse(comm);
+        System.out.println(command);
         switch (command) {
           case ONLINE_BOARD:
             FlightCommands.printAllFlights(flightController);
@@ -58,6 +60,7 @@ public class UserInterface {
             break;
         }
       } catch (Exception e) {
+        e.printStackTrace();
         System.out.println("Command not found please try again");
       }
     } while (true);

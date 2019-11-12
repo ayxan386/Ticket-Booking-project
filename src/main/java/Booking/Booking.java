@@ -55,4 +55,10 @@ public class Booking {
   public Flight getFlight() {
     return flight;
   }
+
+  public String toDetailedString() {
+    return String.format("-------------------------------\n" +
+        "<<<%s>>>\n %s\n" +
+        "-------------------------------", ID, flight.detailedString());
+  }
 }
