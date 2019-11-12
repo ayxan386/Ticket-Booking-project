@@ -45,6 +45,7 @@ public class UserInterface {
             UserBookingCommands.bookNewFlight(userController, bookingController, flightController, scanner);
             break;
           case CANCEL_BOOKING: /*cancelBooking()*/
+            UserBookingCommands.cancelBookings(userController, bookingController, flightController, scanner);
             break;
           case MY_BOOKINGS: /*myBookings()*/
             UserBookingCommands.showMyBookings(userController, bookingController);

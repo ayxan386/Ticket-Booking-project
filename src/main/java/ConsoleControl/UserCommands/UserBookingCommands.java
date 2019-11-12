@@ -15,17 +15,19 @@ public class UserBookingCommands {
   public static void showMyBookings(UserController userController, BookingController bookingController) {
     Optional<User> loggedUser = userController.getLoggedUser();
     if (loggedUser.isPresent()) {
-      System.out.println("List of your bookings");
-      for (String bookingId : loggedUser.get().getBookings()) {
-        Booking b = bookingController.get(bookingId);
-        System.out.println(b.toDetailedString());
+      if (loggedUser.get().getBookings().size() > 0) {
+        System.out.println("List of your bookings");
+        for (String bookingId : loggedUser.get().getBookings()) {
+          Booking b = bookingController.get(bookingId);
+          System.out.println(b.toDetailedString());
+        }
+      } else {
+        System.out.println("You have no bookings(");
       }
-    } else {
-      System.out.println("You have no bookings(");
     }
   }
 
-  public static void cancelBookings(UserController userController, BookingController bookingController, Scanner scanner) {
+  public static void cancelBookings(UserController userController, BookingController bookingController, FlightController flightController, Scanner scanner) {
     Optional<User> loggedUser = userController.getLoggedUser();
     if (loggedUser.isPresent()) {
       showMyBookings(userController, bookingController);
@@ -35,7 +37,13 @@ public class UserBookingCommands {
       User user = loggedUser.get();
       if (!user.hasBooking(id)) throw new IllegalArgumentException("No such booking exists");
       user.removeBooking(id);
-      bookingController.remove(new Booking(id));
+      userController.update(user);
+      Booking b = bookingController.get(id);
+      Flight f = b.getFlight();
+      f.bookSeat(-2);
+      flightController.update(f);
+      bookingController.remove(b);
+
     } else {
       throw new IllegalArgumentException("You are not logged in");
     }

@@ -63,11 +63,11 @@ public class User {
   }
 
   public boolean hasBooking(String id) {
-    return bookings.contains(new Booking(id));
+    return bookings.contains(id);
   }
 
   public void removeBooking(String id) {
-    bookings.remove(new Booking(id));
+    bookings.remove(id);
   }
 
   @Override

@@ -37,7 +37,7 @@ public class Booking {
     if (this == o) return true;
     if (!(o instanceof Booking)) return false;
     Booking booking = (Booking) o;
-    return Objects.equals(getID(), booking.getID());
+    return booking.getID().equalsIgnoreCase(getID());
   }
 
   @Override
