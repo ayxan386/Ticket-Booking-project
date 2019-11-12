@@ -17,8 +17,8 @@ public class FlightControllerTest {
   @Before
   public void setup() {
     flightController = FlightController.create();
-    f1 = new Flight("000001", "Baku", "Kiev", 2.5);
-    f2 = new Flight("000002", "Hell", "Heaven", 666);
+    f1 = new Flight("000001", "Baku", "Kiev", 75, 2.5, 95);
+    f2 = new Flight("000002", "Hell", "Heaven", 75, 666, 72);
   }
 
   @After

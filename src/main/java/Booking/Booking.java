@@ -2,7 +2,6 @@ package Booking;
 
 import Flight.Flight;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,29 +9,25 @@ import java.util.stream.Stream;
 public class Booking {
 
   private final Flight flight;
-  private final LocalDateTime date;
-  private final String price;
   private final String ID;
-  private boolean Class;
+  private final int count;
 
-  public Booking(Flight flight, LocalDateTime date, String price, String ID, boolean aClass) {
+  public Booking(Flight flight, String ID, int count) {
     this.flight = flight;
-    this.date = date;
-    this.price = price;
     this.ID = ID;
-    this.Class = aClass;
+    this.count = count;
   }
 
-  public Booking(Flight flight, LocalDateTime date, String price, boolean aClass) {
-    this(flight, date, price, randomId(), aClass);
+  public Booking(Flight flight, int count) {
+    this(flight, randomId(), count);
   }
 
   public Booking(String id) {
-    this(null, null, "", id, true);
+    this(null, id, 0);
   }
 
   private static String randomId() {
-    return Stream.generate(() -> String.valueOf((char) (Math.random() * 36)))
+    return Stream.generate(() -> String.valueOf((char) (Math.random() * 26 + 'A')))
         .limit(10)
         .collect(Collectors.joining(""));
   }
@@ -42,7 +37,12 @@ public class Booking {
     if (this == o) return true;
     if (!(o instanceof Booking)) return false;
     Booking booking = (Booking) o;
-    return Objects.equals(getID(), booking.getID());
+    return booking.getID().equalsIgnoreCase(getID());
+  }
+
+  @Override
+  public String toString() {
+    return String.format("%s %s", ID, flight);
   }
 
   @Override
@@ -50,27 +50,21 @@ public class Booking {
     return Objects.hash(getID());
   }
 
-  public boolean isClass() {
-    return Class;
-  }
-
-  public void setClass(boolean aClass) {
-    Class = aClass;
-  }
-
   public String getID() {
     return ID;
   }
 
-  public LocalDateTime getDate() {
-    return date;
-  }
-
-  public String getPrice() {
-    return price;
-  }
-
   public Flight getFlight() {
     return flight;
+  }
+
+  public int getCount() {
+    return count;
+  }
+
+  public String toDetailedString() {
+    return String.format("-------------------------------\n" +
+        "<<<%s>>> (x%d)\nFlight:{%s}\n" +
+        "-------------------------------", ID, count, flight.detailedString());
   }
 }

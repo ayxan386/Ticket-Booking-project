@@ -5,6 +5,7 @@ import DAO.DAO;
 import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class FlightDAO implements DAO<Flight> {
 
@@ -22,7 +23,10 @@ public class FlightDAO implements DAO<Flight> {
           new FileReader(flights));
       bw.lines().forEach(el -> {
         String[] cols = el.split("/");
-        Flight f = new Flight(cols[0], cols[1], cols[2], Double.parseDouble(cols[3]));
+        Flight f = new Flight(cols[0], cols[1], cols[2],
+            Integer.parseInt(cols[3]),
+            Double.parseDouble(cols[4]),
+            Double.parseDouble(cols[5]));
         res.add(f);
       });
       bw.close();
@@ -38,11 +42,13 @@ public class FlightDAO implements DAO<Flight> {
           new FileWriter(flights));
       for (Flight flight : storage) {
         bw.write(
-            String.format("%s/%s/%s/%s\n",
+            String.format("%s/%s/%s/%s/%.2f/%.2f\n",
                 flight.getId(),
                 flight.getFrom(),
                 flight.getTo(),
-                String.valueOf(flight.getDuration())
+                String.valueOf(flight.getSeats()),
+                flight.getDuration(),
+                flight.getPrice()
             ));
       }
       bw.close();
@@ -76,14 +82,22 @@ public class FlightDAO implements DAO<Flight> {
   }
 
   public Flight findFromTo(String form, String to) {
-    return storage.stream().filter(t -> form.equals(t.getFrom()) ||
+    return storage.stream().filter(t -> form.equals(t.getFrom()) &&
         to.equals(t.getTo())).findFirst().get();
+  }
 
+  public Set<Flight> findFlightsFromTo(String from, String to) {
+    return storage.stream().filter(t ->
+        from.equalsIgnoreCase(t.getFrom()) && to.equalsIgnoreCase(t.getTo())
+    )
+        .collect(Collectors.toSet());
   }
 
   @Override
   public void update(Flight data) {
+    storage.remove(data);
     storage.add(data);
+    updateDatabase();
   }
 
 

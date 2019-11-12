@@ -1,6 +1,6 @@
 package Booking;
 
-import java.util.HashSet;
+import java.util.Set;
 
 class BookingService {
   private BookingDAO bookingDAO;
@@ -39,7 +39,7 @@ class BookingService {
     bookingDAO.update(data);
   }
 
-  public HashSet<Booking> getAllBookingInfo() {
+  public Set<Booking> getAllBookingInfo() {
     return bookingDAO.getAllBookingInfo();
   }
 

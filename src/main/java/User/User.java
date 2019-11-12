@@ -3,6 +3,7 @@ package User;
 import Booking.Booking;
 
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public class User {
   private final String name;
@@ -37,6 +38,10 @@ public class User {
     bookings.add(b.getID());
   }
 
+  public void addBooking(String id) {
+    bookings.add(id);
+  }
+
   public String getName() {
     return name;
   }
@@ -58,11 +63,11 @@ public class User {
   }
 
   public boolean hasBooking(String id) {
-    return bookings.contains(new Booking(id));
+    return bookings.contains(id);
   }
 
   public void removeBooking(String id) {
-    bookings.remove(new Booking(id));
+    bookings.remove(id);
   }
 
   @Override
@@ -81,5 +86,11 @@ public class User {
   @Override
   public String toString() {
     return String.format("User{name='%s', surname='%s', nickname='%s', id='%s'}", name, surname, nickname, id);
+  }
+
+  public String bookingToString() {
+    StringJoiner res = new StringJoiner(",", "[", "]");
+    bookings.forEach(res::add);
+    return res.toString();
   }
 }

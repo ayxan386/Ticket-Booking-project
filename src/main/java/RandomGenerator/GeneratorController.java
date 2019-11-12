@@ -21,7 +21,9 @@ public class GeneratorController {
       String to = cities.get(r.nextInt(cities.size()));
       if (from.equals(to)) continue;
       double duration = r.nextDouble() * 23 * 60;
-      Flight flight = new Flight(from, to, duration);
+      double price = r.nextDouble() * 1000 + 150;
+      int seats = r.nextInt(100) + 50;
+      Flight flight = new Flight(from, to, seats, duration, price);
       flightController.addFlight(flight);
     }
   }

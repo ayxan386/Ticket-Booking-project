@@ -16,9 +16,13 @@ public class UserController {
   }
 
   public boolean loginUser(User u, String pass) {
-    if (!userService.match(u.getId(), Encrypter.encrypt(pass)))
+    pass = Encrypter.encrypt(pass);
+    if (!userService.match(u.getId(), pass))
       throw new IllegalArgumentException("Wrong password");
-    loggedUser = Optional.of(u);
+    loggedUser = Optional.of(new User(
+        userService.get(u.getId()),
+        pass)
+    );
     return true;
   }
 
@@ -29,7 +33,7 @@ public class UserController {
 
   public boolean registerUser(User u, String pass) {
     pass = Encrypter.encrypt(pass);
-    loggedUser = Optional.of(u);
+    loggedUser = Optional.of(new User(u, pass));
     return userService.smartAdd(new User(u, pass));
   }
 
@@ -53,5 +57,9 @@ public class UserController {
 
   public Optional<User> getLoggedUser() {
     return loggedUser;
+  }
+
+  public void update(User user) {
+    userService.update(user);
   }
 }
