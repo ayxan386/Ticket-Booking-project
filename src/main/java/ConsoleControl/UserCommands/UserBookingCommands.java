@@ -67,10 +67,10 @@ public class UserBookingCommands {
   private static void bookWithoutId(UserController userController, BookingController bookingController, FlightController flightController, Scanner scanner) {
     System.out.println("Please enter the following");
 
-    System.out.println("From: ");
+    System.out.print("From: ");
     String from = scanner.nextLine();
 
-    System.out.println("To: ");
+    System.out.print("To: ");
     String to = scanner.nextLine();
 
     Set<Flight> flights = flightController.findFlightsFromTo(from, to);
